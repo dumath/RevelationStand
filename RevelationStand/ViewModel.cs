@@ -15,6 +15,7 @@ namespace RevelationStand
             _druid = new Druid();
         }
 
+        //TODO: ADD class character / Command
         public Druid Druid
         {
             get => this._druid;
