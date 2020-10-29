@@ -272,7 +272,7 @@ namespace Characteristic
     }
     #endregion
 
-    #region Advanced classes
+    #region Common classes
 
     //ВНИМАНИЕ:Класс бонуса к характеристике. Этот класс имеет сходство с бонусом к Силе атаки/ Силе заклинаний. 
     public class Bonus : INotifyPropertyChanged
@@ -407,23 +407,39 @@ namespace Characteristic
         #endregion
     }
 
-    public class Modifier
+    public class Modifier : INotifyPropertyChanged
     {
+        #region Fields
         private float _value;
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        #region Constructors
         public Modifier(float modifier)
         {
             this._value = modifier;
         }
+        #endregion
 
+        #region Propertyes
         public float Value
         {
             get => this._value;
             set
             {
-
+                this._value = value;
+                OnPropertyChanged(nameof(Value));
             }
         }
+        #endregion
+
+        #region Methods
+        private void OnPropertyChanged(string propertyName)
+        {
+            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
     }
 
     #endregion
