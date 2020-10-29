@@ -22,6 +22,8 @@ namespace RevelationStand
         private Endurancy _endurancy;
         private SpellPower _spellPower;
         private Agility _agility;
+        private Speed _speed;
+        
         #endregion
 
         #region Constructors
@@ -32,6 +34,7 @@ namespace RevelationStand
             this._endurancy = new Endurancy(2.0f);
             this._spellPower = new SpellPower(2.0f);
             this._agility = new Agility(1.0f);
+            this._speed = new Speed();
         }
         #endregion
 
@@ -60,6 +63,12 @@ namespace RevelationStand
         {
             get => this._agility;
         }
+
+        public Speed Speed
+        {
+            get => this._speed;
+        }
+
         #endregion
     }
 }

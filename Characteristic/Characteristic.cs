@@ -460,4 +460,21 @@ namespace Characteristic
 
     #endregion
 
+    #region Other classes
+    public class Speed
+    {
+        private float _value;
+
+        public Speed()
+        {
+            this._value = 300.0f;
+        }
+
+        public float Value
+        {
+            get => this._value;
+        }
+    }
+    #endregion
+
 }

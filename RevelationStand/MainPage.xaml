@@ -153,18 +153,21 @@
 
                 <!--Все характеристики. 2 Часть SplitView. Блок характеристик -->
                 <ListView Grid.Row="2" Grid.Column="1" Margin="20,20,0,0">
-                    <StackPanel Orientation="Horizontal" Spacing="30">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
                         <!--Базовая сила атаки + модификатор-->
                         <TextBlock Text="Сила Атаки" />
                         <TextBlock Text="{Binding Druid.Strange.Modifier.Value}" />
+                        <TextBlock Text="-" Width="5"/>
                         <TextBlock Text="{Binding Druid.Strange.Modifier.Value}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Бонус к силе атаки"/>
                         <TextBlock Text="{Binding Druid.Strange.BonusBaseAtt.Value}" ToolTipService.ToolTip="Процентное увеличение базовой мин и макс СА"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
                         <TextBlock Text="Сила заклинаний"/>
+                        <TextBlock Text="0"/>
+                        <TextBlock Text="-" Width="5"/>
                         <TextBlock Text="0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
@@ -173,7 +176,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Скорость"/>
-                        <TextBlock Text="0"/>
+                        <TextBlock Text="{Binding Druid.Speed.Value}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Точность"/>
