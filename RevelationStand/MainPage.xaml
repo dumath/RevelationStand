@@ -155,8 +155,9 @@
                 <ListView Grid.Row="2" Grid.Column="1" Margin="20,20,0,0">
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <!--Базовая сила атаки + модификатор-->
-                        <TextBlock Text="Сила Атаки" ToolTipService.ToolTip="{Binding Druid.Strange.Bonus.Value}" />
-                        <TextBlock Text="" />
+                        <TextBlock Text="Сила Атаки" />
+                        <TextBlock Text="{Binding Druid.Strange.Modifier.Value}" />
+                        <TextBlock Text="{Binding Druid.Strange.Modifier.Value}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Бонус к силе атаки"/>

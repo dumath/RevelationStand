@@ -4,6 +4,7 @@ using System.ComponentModel;
 
 namespace Characteristic
 {
+
     #region Strange
     public class Strange : INotifyPropertyChanged
     {
@@ -13,6 +14,7 @@ namespace Characteristic
         private BonusBaseAtt _bonusBaseAtt; // Бонус к базовой силе атаки
         private MinBase _minBase;
         private MaxBase _maxBase;
+        private Modifier _modifier;
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
@@ -24,6 +26,7 @@ namespace Characteristic
             this._bonusBaseAtt = new BonusBaseAtt(_value + _bonus.Value);
             this._minBase = new MinBase(0.0f); //TODO: После добавляения эквипа, переопределить алгоритм расчета
             this._maxBase = new MaxBase(0.0f); //TODO: После добавляения эквипа, переопределить алгоритм расчета
+            this._modifier = new Modifier(this._value + this._bonus.Value);
         }
         #endregion
 
@@ -33,7 +36,7 @@ namespace Characteristic
         /// <summary>
         /// Свойство основной характеристики силы
         /// </summary>
-        public virtual float Value
+        public float Value
         {
             get => this._value;
             set
@@ -59,6 +62,13 @@ namespace Characteristic
             get => this._bonusBaseAtt;
         }
 
+        /// <summary>
+        /// Каждая 1 ед. силы дает 1 очко в модификатор
+        /// </summary>
+        public Modifier Modifier
+        {
+            get => this._modifier;
+        }
         #endregion
 
         #region Methods
@@ -66,14 +76,20 @@ namespace Characteristic
         {
             this._value++;
             OnPropertyChanged(nameof(Value));
+            this._modifier.Value++;
             this._bonusBaseAtt.Value = (int)Math.Round(this._value +_bonus.Value) / 10 * 4;
         }
 
         public void Sub()
         {
-            this._value--;
-            OnPropertyChanged(nameof(Value));
-            this._bonusBaseAtt.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
+            if(this._value != 1.0f)
+            {
+                this._value--;
+                OnPropertyChanged(nameof(Value));
+                this._modifier.Value--;
+                this._bonusBaseAtt.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
+            }
+            
         }
         
         private void OnPropertyChanged(string propertyName)
