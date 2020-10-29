@@ -22,7 +22,7 @@ namespace RevelationStand
         private Endurancy _endurancy;
         private SpellPower _spellPower;
         private Agility _agility;
-        private Speed _speed;
+        private Speed _speed; //TODO: Забиндить, при описании баф/дебаф. Биндится только на инициализации.
         
         #endregion
 

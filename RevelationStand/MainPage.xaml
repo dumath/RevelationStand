@@ -162,17 +162,17 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Бонус к силе атаки"/>
-                        <TextBlock Text="{Binding Druid.Strange.BonusBaseAtt.Value}" ToolTipService.ToolTip="Процентное увеличение базовой мин и макс СА"/>
+                        <TextBlock Text="{Binding Druid.Strange.BonusBase.Value}" ToolTipService.ToolTip="Процентное увеличение базовой мин и макс СА"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <TextBlock Text="Сила заклинаний"/>
-                        <TextBlock Text="0"/>
+                        <TextBlock Text="{Binding Druid.Intellegency.Modifier.Value}"/>
                         <TextBlock Text="-" Width="5"/>
-                        <TextBlock Text="0"/>
+                        <TextBlock Text="{Binding Druid.Intellegency.Modifier.Value}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Бонус к силе заклинаний"/>
-                        <TextBlock Text="0"/>
+                        <TextBlock Text="{Binding Druid.Intellegency.BonusBase.Value}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Скорость"/>

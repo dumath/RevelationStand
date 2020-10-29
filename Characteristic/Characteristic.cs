@@ -11,7 +11,7 @@ namespace Characteristic
         #region Fields
         private float _value; //Основное значение силы
         private Bonus _bonus; //Бонус к характеристике(приходит от гринда)
-        private BonusBaseAtt _bonusBaseAtt; // Бонус к базовой силе атаки
+        private BonusBase _bonusBase; // Бонус к базовой силе атаки
         private MinBase _minBase;
         private MaxBase _maxBase;
         private Modifier _modifier;
@@ -23,9 +23,9 @@ namespace Characteristic
         {
             this._value = value;
             this._bonus = new Bonus();
-            this._bonusBaseAtt = new BonusBaseAtt(_value + _bonus.Value);
-            this._minBase = new MinBase(0.0f); //TODO: После добавляения эквипа, переопределить алгоритм расчета
-            this._maxBase = new MaxBase(0.0f); //TODO: После добавляения эквипа, переопределить алгоритм расчета
+            this._bonusBase = new BonusBase(_value + _bonus.Value);
+            this._minBase = new MinBase(0.0f); //TODO: Strange: После добавляения эквипа, переопределить алгоритм расчета
+            this._maxBase = new MaxBase(0.0f); //TODO: Strange: После добавляения эквипа, переопределить алгоритм расчета
             this._modifier = new Modifier(this._value + this._bonus.Value);
         }
         #endregion
@@ -57,9 +57,9 @@ namespace Characteristic
         /// <summary>
         /// Процент увеличения базовой СА мин и макс. Бонус к базовой.
         /// </summary>
-        public BonusBaseAtt BonusBaseAtt
+        public BonusBase BonusBase
         {
-            get => this._bonusBaseAtt;
+            get => this._bonusBase;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Characteristic
             this._value++;
             OnPropertyChanged(nameof(Value));
             this._modifier.Value++;
-            this._bonusBaseAtt.Value = (int)Math.Round(this._value +_bonus.Value) / 10 * 4;
+            this._bonusBase.Value = (int)Math.Round(this._value +_bonus.Value) / 10 * 4;
         }
 
         public void Sub()
@@ -87,7 +87,7 @@ namespace Characteristic
                 this._value--;
                 OnPropertyChanged(nameof(Value));
                 this._modifier.Value--;
-                this._bonusBaseAtt.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
+                this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
             }
             
         }
@@ -103,16 +103,29 @@ namespace Characteristic
     #region Intellegency
     public class Intellegency : INotifyPropertyChanged
     {
+        #region Fields
         private float _value;
-        private Bonus _bonus;
+        private Bonus _bonus; //Бонус к характеристике(приходит от гринда)
+        private BonusBase _bonusBase; // Бонус к базовой силе заклинаний
+        private MinBase _minBase;
+        private MaxBase _maxBase;
+        private Modifier _modifier;
         public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        #region Constructors
         public Intellegency(float value)
         {
             this._value = value;
             this._bonus = new Bonus();
+            this._bonusBase = new BonusBase(_value + _bonus.Value);
+            this._minBase = new MinBase(0.0f); //TODO: Intellegency: После добавляения эквипа, переопределить алгоритм расчета
+            this._maxBase = new MaxBase(0.0f); //TODO: Intellegency: После добавляения эквипа, переопределить алгоритм расчета
+            this._modifier = new Modifier(this._value + this._bonus.Value);
         }
+        #endregion
 
+        #region Propertyes
         public virtual float Value
         {
             get => this._value;
@@ -128,24 +141,56 @@ namespace Characteristic
             get => this._bonus;
         }
 
+        public BonusBase BonusBase
+        {
+            get => this._bonusBase;
+        }
+
+        public MinBase MinBase
+        {
+            get => this._minBase;
+        }
+
+        public MaxBase MaxBase
+        {
+            get => this._maxBase;
+        }
+
+        public Modifier Modifier
+        {
+            get => this._modifier;
+        }
+        #endregion
+
+        #region Methods
         public void Add()
         {
             this._value++;
             OnPropertyChanged(nameof(Value));
+            this._modifier.Value++;
+            this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
         }
+        
 
         public void Sub()
         {
-            this._value--;
-            OnPropertyChanged(nameof(Value));
+            if(this._value != 1.0f)
+            {
+                this._value--;
+                OnPropertyChanged(nameof(Value));
+                this._modifier.Value--;
+                this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
+            }
+            
         }
 
         private void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
     }
-#endregion
+    #endregion
 
     #region Endurancy
     public class Endurancy : INotifyPropertyChanged
@@ -319,7 +364,7 @@ namespace Characteristic
         
     }
 
-    public class BonusBaseAtt : INotifyPropertyChanged
+    public class BonusBase : INotifyPropertyChanged
     {
         #region Fields
         //Каждые 10 единиц силы дают 4% бонуса
@@ -328,7 +373,7 @@ namespace Characteristic
         #endregion
 
         #region Constructors
-        public BonusBaseAtt(float strange)
+        public BonusBase(float strange)
         {
             this._value = (int)Math.Round(strange) / 10 * 4;
         }
