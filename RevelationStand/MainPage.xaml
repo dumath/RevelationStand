@@ -142,11 +142,11 @@
                     
                     <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="50" Margin="10,10,0,0">
                         <TextBlock Text="Здоровье" FontSize="16"/>
-                        <TextBlock Text="0" FontSize="16"/>
+                        <TextBlock Text="{Binding Druid.HP.Value}" FontSize="16"/>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center"  Spacing="50" Margin="10,10,0,0">
                         <TextBlock Text="Мана" FontSize="16"/>
-                        <TextBlock Text="0" FontSize="16"/>
+                        <TextBlock Text="{Binding Druid.MP.Value}" FontSize="16"/>
                     </StackPanel>
                 </Grid>
 

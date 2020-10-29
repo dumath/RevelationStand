@@ -23,6 +23,8 @@ namespace RevelationStand
         private SpellPower _spellPower;
         private Agility _agility;
         private Speed _speed; //TODO: Забиндить, при описании баф/дебаф. Биндится только на инициализации.
+        private HP _hp;
+        private MP _mp;
         
         #endregion
 
@@ -35,6 +37,8 @@ namespace RevelationStand
             this._spellPower = new SpellPower(2.0f);
             this._agility = new Agility(1.0f);
             this._speed = new Speed();
+            this._hp = new HP(540.0f);
+            this._mp = new MP(320.0f);
         }
         #endregion
 
@@ -68,6 +72,17 @@ namespace RevelationStand
         {
             get => this._speed;
         }
+
+        public HP HP
+        {
+            get => this._hp;
+        }
+
+        public MP MP
+        {
+            get => this._mp;
+        }
+
 
         #endregion
     }

@@ -520,6 +520,76 @@ namespace Characteristic
             get => this._value;
         }
     }
+
+    public class HP : INotifyPropertyChanged
+    {
+        #region Fields
+        private float _value;
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Constructors
+        public HP(float healthPoint)
+        {
+            this._value = healthPoint;
+        }
+        #endregion
+
+        #region Propretyes
+        public float Value
+        {
+            get => this._value;
+            set
+            {
+                this._value = value; //?? добавить или изменить TODO: Переделать(!Возможно, на гетсеттер работает инкримент)
+                OnPropertyChanged(nameof(Value));
+            }
+        }
+        #endregion
+
+        #region Methods
+        private void OnPropertyChanged(string propertyName)
+        {
+            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
+
+    }
+
+    public class MP :INotifyPropertyChanged
+    {
+        #region Fields
+        private float _value;
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Constructors
+        public MP(float manaPoint)
+        {
+            this._value = manaPoint;
+        }
+        #endregion
+
+        #region Propretyes
+        public float Value
+        {
+            get => this._value;
+            set
+            {
+                this._value = value;
+                OnPropertyChanged(nameof(Value));
+            }
+        }
+        #endregion
+
+        #region Methods
+        private void OnPropertyChanged(string propertyName)
+        {
+            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+    }
     #endregion
 
 }
