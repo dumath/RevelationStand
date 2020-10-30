@@ -12,9 +12,9 @@ namespace Characteristic
         private float _value; //Основное значение силы
         private Bonus _bonus; //Бонус к характеристике(приходит от гринда)
         private BonusBase _bonusBase; // Бонус к базовой силе атаки
-        private MinBase _minBase;
-        private MaxBase _maxBase;
-        private Modifier _modifier;
+        private MinBase _minBase; //Минимальная базовая сила атаки
+        private MaxBase _maxBase; //Максимальная базовая сила атаки
+        private Modifier _modifier; //Модификатор. Прибавляется к минимальной и максимальной базовой, до увеличения Бонусом к силе атаки. Сдвигает интервал Мин - Макс.
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
@@ -31,8 +31,6 @@ namespace Characteristic
         #endregion
 
         #region Propertyes
-
-
         /// <summary>
         /// Свойство основной характеристики силы
         /// </summary>
