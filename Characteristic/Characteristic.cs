@@ -202,16 +202,26 @@ namespace Characteristic
     #region Endurancy
     public class Endurancy : INotifyPropertyChanged
     {
+        /*Каждая единица Выносливости дает 29 единиц ХП, 8 единиц зашиты(модификатор), за 10 единиц Выносливости - 4% к бонусу базовой защиты*/
+        private const float HP_PER_ONE_VALUE = 29.0f;
+        private const float DEFENCE_PER_ONE_VALUE = 8.0f;
+        #region Fields
         private float _value;
         private Bonus _bonus;
+        private BonusBase _bonusBase;
         public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        #region Constructors
         public Endurancy(float value)
         {
             this._value = value;
             this._bonus = new Bonus();
+            this._bonusBase = new BonusBase(this._value + this._bonus.Value);
         }
+        #endregion
 
+        #region Propertyes
         public virtual float Value
         {
             get => this._value;
@@ -226,7 +236,9 @@ namespace Characteristic
         {
             get => this._bonus;
         }
+        #endregion
 
+        #region Methods
         public void Add()
         {
             this._value++;
@@ -235,14 +247,19 @@ namespace Characteristic
 
         public void Sub()
         {
-            this._value--;
-            OnPropertyChanged(nameof(Value));
+            if(this._value != 1.0f)
+            {
+                this._value--;
+                OnPropertyChanged(nameof(Value));
+            }
+            
         }
 
         private void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
     }
     #endregion
 
