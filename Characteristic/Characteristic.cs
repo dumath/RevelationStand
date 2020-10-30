@@ -15,8 +15,8 @@ namespace Characteristic
         private float _value; //Основное значение силы
         private Bonus _bonus; //Бонус к характеристике(приходит от гринда).
         private BonusBase _bonusBase; // Бонус к базовой силе атаки
-        private MinBase _minBase; //TODO : Перенести в класс Druid. Минимальная базовая сила атаки 
-        private MaxBase _maxBase; ////TODO : Перенести в класс Druid. Максимальная базовая сила атаки
+        private MinBase _minBase;
+        private MaxBase _maxBase;
         private Modifier _modifier; //Модификатор. Прибавляется к минимальной и максимальной базовой, до увеличения Бонусом к силе атаки. Сдвигает интервал Мин - Макс.
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
@@ -530,6 +530,7 @@ namespace Characteristic
 
     public class HP : INotifyPropertyChanged
     {
+        //В структуру не переделывать (!возможно понадобится наследование из за баф).
         #region Fields
         private float _value;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -548,7 +549,7 @@ namespace Characteristic
             get => this._value;
             set
             {
-                this._value = value; //?? добавить или изменить TODO: Переделать(!Возможно, на гетсеттер работает инкримент)
+                this._value = value; //?? добавить или изменить TODO: Переделать(!Возможно. На гетсеттер работает инкримент.)
                 OnPropertyChanged(nameof(Value));
             }
         }
@@ -566,6 +567,7 @@ namespace Characteristic
 
     public class MP :INotifyPropertyChanged
     {
+        //В структуру не переделывать (!возможно понадобится наследование из за баф).
         #region Fields
         private float _value;
         public event PropertyChangedEventHandler PropertyChanged;
