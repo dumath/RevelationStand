@@ -37,7 +37,7 @@ namespace RevelationStand
             this._spellPower = new SpellPower(2.0f);
             this._agility = new Agility(1.0f);
             this._speed = new Speed();
-            this._hp = new HP(540.0f);
+            this._hp = new HP(540.0f); // TODO: INIT:  Изменить аргумент, поскольку значение включает уже 2ед СД  и  2ед Вын + 1лвл.
             this._mp = new MP(320.0f);
         }
         #endregion
