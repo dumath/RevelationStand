@@ -16,6 +16,9 @@ namespace RevelationStand
 
     class Druid
     {
+        // 0лвл уровень HP - 360 MP 250
+        // TODO: Описать харакеристику LVL(Возможна стркутура, небольшой объект бафов нет, наследование не нужно, перегружать операторы не нужно)!!!
+
         #region Fields
         private Strange _strange;
         private Intellegency _intellegency;
@@ -37,8 +40,8 @@ namespace RevelationStand
             this._spellPower = new SpellPower(2.0f);
             this._agility = new Agility(1.0f);
             this._speed = new Speed();
-            this._hp = new HP(540.0f); // TODO: INIT:  Изменить аргумент, поскольку значение включает уже 2ед СД  и  2ед Вын + 1лвл.
-            this._mp = new MP(320.0f);
+            this._hp = new HP(360.0f);
+            this._mp = new MP(250.0f);
         }
         #endregion
 

@@ -8,12 +8,15 @@ namespace Characteristic
     #region Strange
     public class Strange : INotifyPropertyChanged
     {
+        /* Каждая единица силы(основное значение) добавляет + 1 к модификатору, за каждые 10 единиц силы увеличивается бонус
+         к базовой силе атаки на 4% */
+
         #region Fields
         private float _value; //Основное значение силы
-        private Bonus _bonus; //Бонус к характеристике(приходит от гринда)
+        private Bonus _bonus; //Бонус к характеристике(приходит от гринда).
         private BonusBase _bonusBase; // Бонус к базовой силе атаки
-        private MinBase _minBase; //Минимальная базовая сила атаки
-        private MaxBase _maxBase; //Максимальная базовая сила атаки
+        private MinBase _minBase; //TODO : Перенести в класс Druid. Минимальная базовая сила атаки 
+        private MaxBase _maxBase; ////TODO : Перенести в класс Druid. Максимальная базовая сила атаки
         private Modifier _modifier; //Модификатор. Прибавляется к минимальной и максимальной базовой, до увеличения Бонусом к силе атаки. Сдвигает интервал Мин - Макс.
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
@@ -70,6 +73,9 @@ namespace Characteristic
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Добавляем 1 единицу к основновному значению силы
+        /// </summary>
         public void Add()
         {
             this._value++;
@@ -78,6 +84,9 @@ namespace Characteristic
             this._bonusBase.Value = (int)Math.Round(this._value +_bonus.Value) / 10 * 4;
         }
 
+        /// <summary>
+        /// Убираем 1 очко от основного значения силы. Не может быть 0 или -1
+        /// </summary>
         public void Sub()
         {
             if(this._value != 1.0f)
@@ -105,9 +114,9 @@ namespace Characteristic
         private float _value;
         private Bonus _bonus; //Бонус к характеристике(приходит от гринда)
         private BonusBase _bonusBase; // Бонус к базовой силе заклинаний
-        private MinBase _minBase;
+        private MinBase _minBase; 
         private MaxBase _maxBase;
-        private Modifier _modifier;
+        private Modifier _modifier; //Модификатор
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
