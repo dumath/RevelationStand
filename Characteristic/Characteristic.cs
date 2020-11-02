@@ -214,7 +214,7 @@ namespace Characteristic
         #endregion
 
         #region Constructors
-        //Конструктор объекта Выносливость. Активный. Пассивный отсутствует.
+        //Конструктор объекта Выносливость.
         public Endurancy(float value)
         {
             this._value = value;
@@ -224,7 +224,7 @@ namespace Characteristic
         #endregion
 
         #region Propertyes
-        //Основное свойсто значения выносливости
+        //Основное свойство значения выносливости
         public virtual float Value
         {
             get => this._value;
@@ -287,12 +287,16 @@ namespace Characteristic
         public const float MP_PER_VALUE = 10.0f;
         private Set _set;
         #region Fields
-        private float _value;
-        private Bonus _bonus;
-        public event PropertyChangedEventHandler PropertyChanged;
+        private float _value; // Основное значение характеристики
+        private Bonus _bonus; // Бонус к основному значению от гринда
+        public event PropertyChangedEventHandler PropertyChanged; // Событие интерфейса
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Конструктор объекта
+        /// </summary>
+        /// <param name="value"> Значение приходящее от класса Друид</param>
         public SpellPower(float value)
         {
             this._value = value;
@@ -301,6 +305,7 @@ namespace Characteristic
         #endregion
 
         #region Propertyes
+        //Свойство основного значения
         public virtual float Value
         {
             get => this._value;
@@ -311,11 +316,13 @@ namespace Characteristic
             }
         }
 
+        //Свойство бонуса к основному значению
         public Bonus Bonus
         {
             get => this._bonus;
         }
 
+        //Свойство делегата. Класс HP и MP зависят от основного значения SP
         public Set Set
         {
             get => this._set;
@@ -324,17 +331,15 @@ namespace Characteristic
         #endregion
 
         #region Methods
+        //Добавляем одну единицу к SP
         public void Add()
         {
-
             this._value++;
             OnPropertyChanged(nameof(Value));
             Set(0.0f, 1.0f);
-
-
-
         }
 
+        //Убавляем одну единицу из SP
         public void Sub()
         {
             if (this._value != 1)
@@ -345,6 +350,7 @@ namespace Characteristic
             }
         }
 
+        //Вызываем событие UI , при изменении значении SP
         private void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
@@ -680,7 +686,9 @@ namespace Characteristic
         }
         #endregion
     }
-    #endregion
 
     public delegate void Set(float valueOne, float valueTwo);
+    #endregion
+
+
 }
