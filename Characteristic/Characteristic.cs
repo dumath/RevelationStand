@@ -203,8 +203,8 @@ namespace Characteristic
     public class Endurancy : INotifyPropertyChanged
     {
         /*Каждая единица Выносливости дает 29 единиц ХП, 8 единиц зашиты(модификатор), за 10 единиц Выносливости - 4% к бонусу базовой защиты*/
-        private const float HP_PER_ONE_VALUE = 29.0f;
-        private const float DEFENCE_PER_ONE_VALUE = 8.0f;
+        public const float HP_PER_ONE_VALUE = 29.0f;
+        public const float DEFENCE_PER_ONE_VALUE = 8.0f;
         #region Fields
         private float _value;
         private Bonus _bonus;
@@ -266,8 +266,12 @@ namespace Characteristic
     #region SpellPower
     public class SpellPower : INotifyPropertyChanged
     {
+        public const float HP_PER_ONE_VALUE = 25.0f;
+        public const float RESISTANCE_PER_ONE_VALUE = 8.0f;
+        public const float MP_PER_VALUE = 10.0f;
         private float _value;
         private Bonus _bonus;
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         public SpellPower(float value)
@@ -554,9 +558,9 @@ namespace Characteristic
         #endregion
 
         #region Constructors
-        public HP(float healthPoint)
+        public HP(float healthPoint, float endrurancy, float spellPower)
         {
-            this._value = healthPoint;
+            this._value = healthPoint + (endrurancy * Endurancy.HP_PER_ONE_VALUE) + (spellPower * SpellPower.HP_PER_ONE_VALUE);
         }
         #endregion
 
@@ -591,9 +595,9 @@ namespace Characteristic
         #endregion
 
         #region Constructors
-        public MP(float manaPoint)
+        public MP(float manaPoint, float spellPower)
         {
-            this._value = manaPoint;
+            this._value = manaPoint + (spellPower * SpellPower.MP_PER_VALUE );
         }
         #endregion
 

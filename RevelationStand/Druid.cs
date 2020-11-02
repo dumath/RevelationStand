@@ -20,7 +20,8 @@ namespace RevelationStand
         // TODO: Описать харакеристику LVL(Возможна стркутура, небольшой объект бафов нет, наследование не нужно, перегружать операторы не нужно)!!!
         // За каждый лвл дается 72хп и 50мп
 
-
+        public const float HP_PER_LVL = 72.0f;
+        public const float MP_PER_LVL = 50.0f;
         #region Fields
         private Strange _strange;
         private Intellegency _intellegency;
@@ -42,8 +43,8 @@ namespace RevelationStand
             this._spellPower = new SpellPower(2.0f);
             this._agility = new Agility(1.0f);
             this._speed = new Speed();
-            this._hp = new HP(360.0f);
-            this._mp = new MP(250.0f);
+            this._hp = new HP(360.0f + Druid.HP_PER_LVL, this._endurancy.Value, this._spellPower.Value );
+            this._mp = new MP(250.0f + Druid.MP_PER_LVL, this._spellPower.Value);
         }
         #endregion
 
