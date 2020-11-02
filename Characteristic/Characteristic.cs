@@ -15,13 +15,17 @@ namespace Characteristic
         private float _value; //Основное значение силы
         private Bonus _bonus; //Бонус к характеристике(приходит от гринда).
         private BonusBase _bonusBase; // Бонус к базовой силе атаки
-        private MinBase _minBase;
-        private MaxBase _maxBase;
+        private MinBase _minBase; //TODO: Перенести в класс Druid
+        private MaxBase _maxBase; //TODO: Перенести в класс Druid
         private Modifier _modifier; //Модификатор. Прибавляется к минимальной и максимальной базовой, до увеличения Бонусом к силе атаки. Сдвигает интервал Мин - Макс.
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Инициализация объекта. Значение приходит из класса Друид
+        /// </summary>
+        /// <param name="value"></param>
         public Strange(float value)
         {
             this._value = value;
@@ -34,9 +38,7 @@ namespace Characteristic
         #endregion
 
         #region Propertyes
-        /// <summary>
-        /// Свойство основной характеристики силы
-        /// </summary>
+        // Свойство основной характеристики силы
         public float Value
         {
             get => this._value;
@@ -47,25 +49,19 @@ namespace Characteristic
             }
         }
 
-        /// <summary>
-        /// Бонус к характеристике
-        /// </summary>
+        //Свойство Бонуса к основной характеристике
         public Bonus Bonus
         {
             get => this._bonus;
         }
 
-        /// <summary>
-        /// Процент увеличения базовой СА мин и макс. Бонус к базовой.
-        /// </summary>
+        // Процент увеличения базовой СА мин и макс. Бонус к базовой.
         public BonusBase BonusBase
         {
             get => this._bonusBase;
         }
 
-        /// <summary>
-        /// Каждая 1 ед. силы дает 1 очко в модификатор
-        /// </summary>
+        // Каждая 1 ед. силы дает 1 очко в модификатор
         public Modifier Modifier
         {
             get => this._modifier;
@@ -205,7 +201,7 @@ namespace Characteristic
         /*Каждая единица Выносливости дает 29 единиц ХП, 8 единиц зашиты(модификатор), за 10 единиц Выносливости - 4% к бонусу базовой защиты*/
         public const float HP_PER_ONE_VALUE = 29.0f; // 1 ед Value == HP_PER_VALUE
         public const float DEFENCE_PER_ONE_VALUE = 8.0f; // 1ед Value == DEFENCE_PER_VALUE
-        private Set _set;
+        private Set _set; //!!!!БЫТЬ ПРЕДЕЛЬНО ВНИМАТЕЛЬНЫМ С ДАННЫМ ДЕЛЕГАТОМ. НА НЕМ ВИСЯТ МЕТОДЫ ДРУГИХ КЛАССОВ. В ПАРАМЕТРАХ : ВЫН , СД. ПОЗИЦИЮ СОБЛЮДАТЬ.
         #region Fields
         private float _value; //Основная зарактеристика
         private Bonus _bonus; // Бонус к основной характеристике
@@ -282,10 +278,12 @@ namespace Characteristic
     #region SpellPower
     public class SpellPower : INotifyPropertyChanged
     {
-        public const float HP_PER_ONE_VALUE = 25.0f;
-        public const float RESISTANCE_PER_ONE_VALUE = 8.0f;
-        public const float MP_PER_VALUE = 10.0f;
-        private Set _set;
+        /* Каждая единица силы духа прибавляет 25 ед к хп, 10 единиц к мп, 1.6f к лечению, 8ед к resist(модификатор?-зайти в игру потестить стат).
+           Каждые 10 единиц СД увеличивают реген хп на 1ед(!не понадобится), и дает 4% к бонусу базового resist */ 
+        public const float HP_PER_ONE_VALUE = 25.0f; //1 _value == 25.0f hp
+        public const float RESISTANCE_PER_ONE_VALUE = 8.0f; // 1 _value == 8.0f resist
+        public const float MP_PER_VALUE = 10.0f; // 1 _value == 10.0f mp
+        private Set _set; //!!!!БЫТЬ ПРЕДЕЛЬНО ВНИМАТЕЛЬНЫМ С ДАННЫМ ДЕЛЕГАТОМ. НА НЕМ ВИСЯТ МЕТОДЫ ДРУГИХ КЛАССОВ. В ПАРАМЕТРАХ : ВЫН , СД. ПОЗИЦИЮ СОБЛЮДАТЬ.
         #region Fields
         private float _value; // Основное значение характеристики
         private Bonus _bonus; // Бонус к основному значению от гринда
