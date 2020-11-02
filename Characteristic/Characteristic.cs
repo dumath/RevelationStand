@@ -81,7 +81,7 @@ namespace Characteristic
             this._value++;
             OnPropertyChanged(nameof(Value));
             this._modifier.Value++;
-            this._bonusBase.Value = (int)Math.Round(this._value +_bonus.Value) / 10 * 4;
+            this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
         }
 
         /// <summary>
@@ -89,16 +89,16 @@ namespace Characteristic
         /// </summary>
         public void Sub()
         {
-            if(this._value != 1.0f)
+            if (this._value != 1.0f)
             {
                 this._value--;
                 OnPropertyChanged(nameof(Value));
                 this._modifier.Value--;
                 this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
             }
-            
+
         }
-        
+
         private void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
@@ -114,7 +114,7 @@ namespace Characteristic
         private float _value;
         private Bonus _bonus; //Бонус к характеристике(приходит от гринда)
         private BonusBase _bonusBase; // Бонус к базовой силе заклинаний
-        private MinBase _minBase; 
+        private MinBase _minBase;
         private MaxBase _maxBase;
         private Modifier _modifier; //Модификатор
         public event PropertyChangedEventHandler PropertyChanged;
@@ -177,18 +177,18 @@ namespace Characteristic
             this._modifier.Value++;
             this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
         }
-        
+
 
         public void Sub()
         {
-            if(this._value != 1.0f)
+            if (this._value != 1.0f)
             {
                 this._value--;
                 OnPropertyChanged(nameof(Value));
                 this._modifier.Value--;
                 this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
             }
-            
+
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -205,7 +205,7 @@ namespace Characteristic
         /*Каждая единица Выносливости дает 29 единиц ХП, 8 единиц зашиты(модификатор), за 10 единиц Выносливости - 4% к бонусу базовой защиты*/
         public const float HP_PER_ONE_VALUE = 29.0f; // 1 ед Value == HP_PER_VALUE
         public const float DEFENCE_PER_ONE_VALUE = 8.0f; // 1ед Value == DEFENCE_PER_VALUE
-        private Set _set; 
+        private Set _set;
         #region Fields
         private float _value; //Основная зарактеристика
         private Bonus _bonus; // Бонус к основной характеристике
@@ -261,16 +261,16 @@ namespace Characteristic
         //Метод убавления 1 единицы характеристики
         public void Sub()
         {
-            if(this._value != 1.0f)
+            if (this._value != 1.0f)
             {
                 this._value--;
                 OnPropertyChanged(nameof(Value));
                 Set(-1.0f, 0.0f);
             }
-            
+
         }
 
-        //Вызов делегата , при изменении значения
+        //Вызов события , при изменении значения
         private void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
@@ -285,18 +285,22 @@ namespace Characteristic
         public const float HP_PER_ONE_VALUE = 25.0f;
         public const float RESISTANCE_PER_ONE_VALUE = 8.0f;
         public const float MP_PER_VALUE = 10.0f;
-        private Set Set;
+        private Set _set;
+        #region Fields
         private float _value;
         private Bonus _bonus;
-        
         public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        #region Constructors
         public SpellPower(float value)
         {
             this._value = value;
             this._bonus = new Bonus();
         }
+        #endregion
 
+        #region Propertyes
         public virtual float Value
         {
             get => this._value;
@@ -312,23 +316,40 @@ namespace Characteristic
             get => this._bonus;
         }
 
+        public Set Set
+        {
+            get => this._set;
+            set => this._set = value;
+        }
+        #endregion
+
+        #region Methods
         public void Add()
         {
+
             this._value++;
             OnPropertyChanged(nameof(Value));
-            
+            Set(0.0f, 1.0f);
+
+
+
         }
 
         public void Sub()
         {
-            this._value--;
-            OnPropertyChanged(nameof(Value));
+            if (this._value != 1)
+            {
+                this._value--;
+                OnPropertyChanged(nameof(Value));
+                Set(0.0f, -1.0f);
+            }
         }
 
         private void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion 
     }
     #endregion
 
@@ -407,7 +428,7 @@ namespace Characteristic
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
+
     }
 
     public class BonusBase : INotifyPropertyChanged
@@ -569,7 +590,7 @@ namespace Characteristic
 
     public class HP : INotifyPropertyChanged
     {
-        
+
         //В структуру не переделывать (!возможно понадобится наследование из за баф).
         #region Fields
         private float _value;
@@ -598,7 +619,7 @@ namespace Characteristic
         #endregion
 
         #region Methods
-        
+
         public void Set(float endurancy = 0.0f, float spellPower = 0.0f)
         {
             this._value += (endurancy * Endurancy.HP_PER_ONE_VALUE) + (spellPower * SpellPower.HP_PER_ONE_VALUE);
@@ -612,10 +633,9 @@ namespace Characteristic
         }
         #endregion
 
-
     }
 
-    public class MP :INotifyPropertyChanged
+    public class MP : INotifyPropertyChanged
     {
         //В структуру не переделывать (!возможно понадобится наследование из за баф).
         #region Fields
@@ -626,7 +646,7 @@ namespace Characteristic
         #region Constructors
         public MP(float manaPoint, float spellPower)
         {
-            this._value = manaPoint + (spellPower * SpellPower.MP_PER_VALUE );
+            this._value = manaPoint + (spellPower * SpellPower.MP_PER_VALUE);
         }
         #endregion
 
@@ -646,6 +666,17 @@ namespace Characteristic
         private void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Метод вызывается при изменении значения силы духа
+        /// </summary>
+        /// <param name="spellPower">Входящая прибавка к силе духа</param>
+        /// <param name="stub">Заглушка(аналог метода адаптера)</param>
+        public void Set(float stub = 0, float spellPower = 0)
+        {
+            this._value += spellPower * SpellPower.MP_PER_VALUE;
+            OnPropertyChanged(nameof(Value));
         }
         #endregion
     }
