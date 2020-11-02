@@ -43,7 +43,8 @@ namespace RevelationStand
             this._spellPower = new SpellPower(2.0f);
             this._agility = new Agility(1.0f);
             this._speed = new Speed();
-            this._hp = new HP(360.0f + Druid.HP_PER_LVL, this._endurancy.Value, this._spellPower.Value );
+            this._hp = new HP(360.0f + Druid.HP_PER_LVL, this._endurancy.Value, this._spellPower.Value);
+            this._endurancy.Set = _hp.Set;
             this._mp = new MP(250.0f + Druid.MP_PER_LVL, this._spellPower.Value);
         }
         #endregion

@@ -203,16 +203,18 @@ namespace Characteristic
     public class Endurancy : INotifyPropertyChanged
     {
         /*Каждая единица Выносливости дает 29 единиц ХП, 8 единиц зашиты(модификатор), за 10 единиц Выносливости - 4% к бонусу базовой защиты*/
-        public const float HP_PER_ONE_VALUE = 29.0f;
-        public const float DEFENCE_PER_ONE_VALUE = 8.0f;
+        public const float HP_PER_ONE_VALUE = 29.0f; // 1 ед Value == HP_PER_VALUE
+        public const float DEFENCE_PER_ONE_VALUE = 8.0f; // 1ед Value == DEFENCE_PER_VALUE
+        private Set _set; 
         #region Fields
-        private float _value;
-        private Bonus _bonus;
-        private BonusBase _bonusBase;
-        public event PropertyChangedEventHandler PropertyChanged;
+        private float _value; //Основная зарактеристика
+        private Bonus _bonus; // Бонус к основной характеристике
+        private BonusBase _bonusBase; // Бонус за 10 ед VALUE(p.s. 4%)
+        public event PropertyChangedEventHandler PropertyChanged; //Отслеживаем изменения и передаем на интерфейс
         #endregion
 
         #region Constructors
+        //Конструктор объекта Выносливость. Активный. Пассивный отсутствует.
         public Endurancy(float value)
         {
             this._value = value;
@@ -222,6 +224,7 @@ namespace Characteristic
         #endregion
 
         #region Propertyes
+        //Основное свойсто значения выносливости
         public virtual float Value
         {
             get => this._value;
@@ -232,29 +235,42 @@ namespace Characteristic
             }
         }
 
+        //Свойство дополнительной характеристики
         public Bonus Bonus
         {
             get => this._bonus;
         }
+
+        //Свойство делегата, для передачи метода из класса HP, при изменении значения
+        public Set Set
+        {
+            get => this._set;
+            set => this._set = value;
+        }
         #endregion
 
         #region Methods
+        //Метод добавления 1 единицы характеристики
         public void Add()
         {
             this._value++;
             OnPropertyChanged(nameof(Value));
+            this._set(1.0f, 0.0f);
         }
 
+        //Метод убавления 1 единицы характеристики
         public void Sub()
         {
             if(this._value != 1.0f)
             {
                 this._value--;
                 OnPropertyChanged(nameof(Value));
+                Set(-1.0f, 0.0f);
             }
             
         }
 
+        //Вызов делегата , при изменении значения
         private void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
@@ -269,6 +285,7 @@ namespace Characteristic
         public const float HP_PER_ONE_VALUE = 25.0f;
         public const float RESISTANCE_PER_ONE_VALUE = 8.0f;
         public const float MP_PER_VALUE = 10.0f;
+        private Set Set;
         private float _value;
         private Bonus _bonus;
         
@@ -299,6 +316,7 @@ namespace Characteristic
         {
             this._value++;
             OnPropertyChanged(nameof(Value));
+            
         }
 
         public void Sub()
@@ -551,6 +569,7 @@ namespace Characteristic
 
     public class HP : INotifyPropertyChanged
     {
+        
         //В структуру не переделывать (!возможно понадобится наследование из за баф).
         #region Fields
         private float _value;
@@ -558,10 +577,12 @@ namespace Characteristic
         #endregion
 
         #region Constructors
-        public HP(float healthPoint, float endrurancy, float spellPower)
+        public HP(float healthPoint, float endurancy, float spellPower)
         {
-            this._value = healthPoint + (endrurancy * Endurancy.HP_PER_ONE_VALUE) + (spellPower * SpellPower.HP_PER_ONE_VALUE);
+
+            this._value = healthPoint + (endurancy * Endurancy.HP_PER_ONE_VALUE) + (spellPower * SpellPower.HP_PER_ONE_VALUE);
         }
+
         #endregion
 
         #region Propretyes
@@ -577,6 +598,14 @@ namespace Characteristic
         #endregion
 
         #region Methods
+        
+        public void Set(float endurancy = 0.0f, float spellPower = 0.0f)
+        {
+            this._value += (endurancy * Endurancy.HP_PER_ONE_VALUE) + (spellPower * SpellPower.HP_PER_ONE_VALUE);
+            OnPropertyChanged(nameof(Value));
+        }
+
+
         private void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
@@ -622,4 +651,5 @@ namespace Characteristic
     }
     #endregion
 
+    public delegate void Set(float valueOne, float valueTwo);
 }
