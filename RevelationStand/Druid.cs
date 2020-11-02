@@ -18,7 +18,7 @@ namespace RevelationStand
     {
         // 0лвл уровень HP - 360 MP 250
         // Изначально Druid LVL == 1;
-        // TODO: Описать харакеристику LVL(Возможна стркутура, небольшой объект бафов нет, наследование не нужно, перегружать операторы не нужно)!!!
+        public int Lvl = 1;
         // За каждый лвл дается 72хп и 50мп
 
         public const float HP_PER_LVL = 72.0f;
@@ -38,6 +38,7 @@ namespace RevelationStand
         #region Constructors
         public Druid()
         {
+            
             this._strange = new Strange(1.0f);
             this._intellegency = new Intellegency(2.0f);
             this._endurancy = new Endurancy(2.0f);

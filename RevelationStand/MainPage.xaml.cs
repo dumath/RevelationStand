@@ -32,6 +32,7 @@ namespace RevelationStand
                 this.InitializeComponent();
                 view = new ViewModel();
                 DataContext = view;
+                lvl.Text =$"Уровень: {view.Druid.Lvl.ToString()}";
             }
             catch(Exception ex)
             {
