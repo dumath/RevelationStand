@@ -18,7 +18,7 @@ namespace RevelationStand
     {
         // 0лвл уровень HP - 360 MP 250
         // Изначально Druid LVL == 1;
-        public int Lvl = 1;
+        public int Lvl = 1; // TODO: Определить структуру(как отдельный тип)
         // За каждый лвл дается 72хп и 50мп
 
         public const float HP_PER_LVL = 72.0f;
@@ -32,13 +32,15 @@ namespace RevelationStand
         private Speed _speed; //TODO: Забиндить, при описании баф/дебаф. Биндится только на инициализации.
         private HP _hp;
         private MP _mp;
-        
+        private Modifier _modifierDefence; //Возможно переделка. Слишком много сходств(!)
+        private Defence _defence; //Возможно переделка. Слишком много сходств(!)
+
         #endregion
 
         #region Constructors
         public Druid()
         {
-            
+
             this._strange = new Strange(1.0f);
             this._intellegency = new Intellegency(2.0f);
             this._endurancy = new Endurancy(2.0f);
@@ -50,6 +52,9 @@ namespace RevelationStand
             this._spellPower.Set = _hp.Set;
             this._mp = new MP(250.0f + Druid.MP_PER_LVL, this._spellPower.Value);
             this._spellPower.Set += _mp.Set;
+            this._modifierDefence = new Modifier(this._endurancy.Value * Endurancy.DEFENCE_PER_ONE_VALUE);
+            this._defence = new Defence(0.0f, this._modifierDefence, this._endurancy.BonusBase);
+
         }
         #endregion
 
@@ -94,7 +99,15 @@ namespace RevelationStand
             get => this._mp;
         }
 
+        public Modifier Modifier // Из-за сходства, нужно будет переделать в отдельный тип, либо в отдельное свойство со своим индентификатором, но на одном типе.Либо реализовать индексатор(!Возможно)
+        {
+            get => this._modifierDefence;
+        }
 
+        public Defence Defence
+        {
+            get => this._defence;
+        }
         #endregion
     }
 }

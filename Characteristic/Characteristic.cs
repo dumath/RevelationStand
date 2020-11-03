@@ -237,6 +237,12 @@ namespace Characteristic
             get => this._bonus;
         }
 
+        //Свойство бонуса к базовой защите
+        public BonusBase BonusBase
+        {
+            get => this._bonusBase;
+        }
+
         //Свойство делегата, для передачи метода из класса HP, при изменении значения
         public Set Set
         {
@@ -503,10 +509,11 @@ namespace Characteristic
         }
         #endregion
 
-    }
+    } 
 
     public class MaxBase : INotifyPropertyChanged
     {
+        
         #region Fields
         private float _value;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -537,7 +544,7 @@ namespace Characteristic
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-    }
+    } 
 
     public class Modifier : INotifyPropertyChanged
     {
@@ -572,7 +579,7 @@ namespace Characteristic
         }
         #endregion
 
-    }
+    } 
 
     #endregion
 
@@ -685,7 +692,51 @@ namespace Characteristic
         #endregion
     }
 
-    public delegate void Set(float valueOne, float valueTwo);
+    public class Defence : INotifyPropertyChanged
+    {
+        /*Класс защиты */
+
+        private float _value;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public Defence(float baseDefence, Modifier modifier, BonusBase bonusBase)
+        {
+            this._value = baseDefence * Calculate.CalculatePersentBonus(bonusBase) + modifier.Value;
+        }
+
+        public float Value
+        {
+            get => this._value;
+            set
+            {
+                this._value = value;
+                OnPropertyChanged(nameof(Value));
+            }
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void AddDefence(float endurancy, float spellPower)
+        {
+            //TODO: алгоритм расчета
+        }
+    }
+
+
+    public delegate void Set(float endurancy, float spellPower);
+
+    public static class Calculate
+    {
+        static Calculate() { }
+        
+        public static float CalculatePersentBonus(BonusBase bonusBase)
+        {
+            return (float)bonusBase.Value / 100 + 1;
+        }
+    }
     #endregion
 
 

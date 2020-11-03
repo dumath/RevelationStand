@@ -201,7 +201,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Защита"/>
-                        <TextBlock Text="0"/>
+                        <TextBlock Text="{Binding Druid.Defence.Value}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Бонус к защите"/>
