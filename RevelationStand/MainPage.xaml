@@ -106,21 +106,21 @@
                     </Grid.ColumnDefinitions>
                     
                     <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Сила"/>
+                        <TextBlock Text="Сила" ToolTipService.ToolTip="Каждая единица силы увеличивает на 1 ед. модификатор силы атаки. Каждые 10 единиц силы увеличивают бонус к базовой силе атаки на 4%"/>
                         <Button x:Name="subStrange" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="60,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click" />
                         <TextBlock Text="{Binding Druid.Strange.Value}" />
                         <Button x:Name="addStrange" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
                         <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Strange.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
                     </StackPanel>
                     <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Интеллект"/>
+                        <TextBlock Text="Интеллект" ToolTipService.ToolTip="Каждая единица интеллекта, увеличивает модификатор силы заклинаний на 1 ед., модификатор лечения на 0,6 ед. Каждые 10 единиц, увеличивают бонус к базовой силе заклинаний на 4%"/>
                         <Button x:Name="subIntellegency" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="25,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
                         <TextBlock Text="{Binding Druid.Intellegency.Value}"/>
                         <Button x:Name="addIntellegency" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
                         <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Intellegency.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
                     </StackPanel>
                     <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Выносливость"/>
+                        <TextBlock Text="Выносливость" ToolTipService.ToolTip=""/>
                         <Button x:Name="subEndurancy" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
                         <TextBlock Text="{Binding Druid.Endurancy.Value}"/>
                         <Button x:Name="addEndurancy" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
@@ -300,6 +300,7 @@
         </SplitView>
 
         <!--Визуальные состояния-->
+        <!--Временная заглушка TODO: Сделать Grid под минимальный размер WinFone-->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
