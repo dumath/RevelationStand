@@ -120,21 +120,21 @@
                         <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Intellegency.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
                     </StackPanel>
                     <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Выносливость" ToolTipService.ToolTip=""/>
+                        <TextBlock Text="Выносливость" ToolTipService.ToolTip="Каждая единица выносливости, увеличивает запас здоровья на 29 ед., модификатор(!) защиты на 8ед. Каждые 10 единиц выносливости увеличивают бонус к базовой защите на 4%"/>
                         <Button x:Name="subEndurancy" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
                         <TextBlock Text="{Binding Druid.Endurancy.Value}"/>
                         <Button x:Name="addEndurancy" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
                         <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Endurancy.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Сила духа"/>
+                        <TextBlock Text="Сила духа" ToolTipService.ToolTip="Каждая единица силы духа, увеличивает запас здоровья на 25 ед., запас маны на 10 ед., модификатор лечения на 1,6 ед., модификатор сопротивления на 8 ед. Каждые 10 единиц силы духа, увеличивают бонус к базовому сопротивлению на 4%"/>
                         <Button x:Name="subSpellPower" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
                         <TextBlock Text="{Binding Druid.SpellPower.Value}"/>
                         <Button x:Name="addSpellPower" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
                         <TextBlock Margin="10,0,0,0" Text="{Binding Druid.SpellPower.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
                     </StackPanel>
                     <StackPanel Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Ловкость"/>
+                        <TextBlock Text="Ловкость" ToolTipService.ToolTip="Каждая единица ловкости, увеличивает критический удар на 2 ед."/>
                         <Button x:Name="subAgility" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
                         <TextBlock Text="{Binding Druid.Agility.Value}"/>
                         <Button x:Name="addAgility" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
