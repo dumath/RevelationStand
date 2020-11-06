@@ -32,7 +32,7 @@ namespace RevelationStand
         private Speed _speed; //TODO: Забиндить, при описании баф/дебаф. Биндится только на инициализации.
         private HP _hp;
         private MP _mp;
-        private Modifier _modifierDefence; //Возможно переделка. Слишком много сходств(!)
+        
         private Defence _defence; //Возможно переделка. Слишком много сходств(!)
 
         #endregion
@@ -52,8 +52,9 @@ namespace RevelationStand
             this._spellPower.Set = _hp.Set;
             this._mp = new MP(250.0f + Druid.MP_PER_LVL, this._spellPower.Value);
             this._spellPower.Set += _mp.Set;
-            this._modifierDefence = new Modifier(this._endurancy.Value * Endurancy.DEFENCE_PER_ONE_VALUE);
-            this._defence = new Defence(0.0f, this._modifierDefence, this._endurancy.BonusBase);
+            this._defence = new Defence(100.0f, this._endurancy); //TODO: Тестовая загрушка (100.0f)
+            this._endurancy.Set += _defence.Set;
+
 
         }
         #endregion
@@ -97,11 +98,6 @@ namespace RevelationStand
         public MP MP
         {
             get => this._mp;
-        }
-
-        public Modifier Modifier // Из-за сходства, нужно будет переделать в отдельный тип, либо в отдельное свойство со своим индентификатором, но на одном типе.Либо реализовать индексатор(!Возможно)
-        {
-            get => this._modifierDefence;
         }
 
         public Defence Defence

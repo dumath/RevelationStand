@@ -203,8 +203,8 @@ namespace Characteristic
         public const float DEFENCE_PER_ONE_VALUE = 8.0f; // 1ед Value == DEFENCE_PER_VALUE
         private Set _set; //!!!!БЫТЬ ПРЕДЕЛЬНО ВНИМАТЕЛЬНЫМ С ДАННЫМ ДЕЛЕГАТОМ. НА НЕМ ВИСЯТ МЕТОДЫ ДРУГИХ КЛАССОВ. В ПАРАМЕТРАХ : ВЫН , СД. ПОЗИЦИЮ СОБЛЮДАТЬ.
         #region Fields
-        private float _value; //Основная зарактеристика
-        private Bonus _bonus; // Бонус к основной характеристике
+        private float _value; //Основная характеристика
+        private Bonus _bonus; // Бонус к основной характеристике(дополнительная характеристика)
         private BonusBase _bonusBase; // Бонус за 10 ед VALUE(p.s. 4%)
         public event PropertyChangedEventHandler PropertyChanged; //Отслеживаем изменения и передаем на интерфейс
         #endregion
@@ -257,6 +257,7 @@ namespace Characteristic
         {
             this._value++;
             OnPropertyChanged(nameof(Value));
+            this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
             this._set(1.0f, 0.0f);
         }
 
@@ -267,7 +268,8 @@ namespace Characteristic
             {
                 this._value--;
                 OnPropertyChanged(nameof(Value));
-                Set(-1.0f, 0.0f);
+                this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
+                this._set(-1.0f, 0.0f);
             }
 
         }
@@ -567,7 +569,7 @@ namespace Characteristic
             set
             {
                 this._value = value;
-                OnPropertyChanged(nameof(Value));
+                this.OnPropertyChanged(nameof(this.Value));
             }
         }
         #endregion
@@ -695,15 +697,23 @@ namespace Characteristic
     public class Defence : INotifyPropertyChanged
     {
         /*Класс защиты */
-
-        private float _value;
+        #region Fields
+        private float _value; //Общая защита
+        private float _base; //TODO: Переделать в отдельный класс//Базовая защита
+        private Modifier _modifier; //Модификатор защиты
         public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
-        public Defence(float baseDefence, Modifier modifier, BonusBase bonusBase)
+        #region Constructors
+        public Defence(float baseDefence, Endurancy endurancy)
         {
-            this._value = baseDefence * Calculate.CalculatePersentBonus(bonusBase) + modifier.Value;
+            this._modifier = new Modifier(Endurancy.DEFENCE_PER_ONE_VALUE * endurancy.Value);
+            this._base = baseDefence;
+            this._value = _base * Calculate.CalculatePersentBonus(endurancy.BonusBase) + this._modifier.Value;
         }
+        #endregion
 
+        #region Propertyes
         public float Value
         {
             get => this._value;
@@ -714,24 +724,47 @@ namespace Characteristic
             }
         }
 
+        public Modifier Modifier
+        {
+            get => this._modifier;
+        }
+
+        public float Base
+        {
+            get => this._base;
+            set
+            {
+                this._base = value;
+                OnPropertyChanged(nameof(Base));
+            }
+        }
+        #endregion
+
+        #region Methods
         private void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void AddDefence(float endurancy, float spellPower)
+        public void Set(float endurancy, float spellPower)
         {
-            //TODO: алгоритм расчета
+            this._modifier.Value = this._modifier.Value + endurancy * Endurancy.DEFENCE_PER_ONE_VALUE;
+            this.OnPropertyChanged(nameof(Value));
         }
+        #endregion
     }
 
 
     public delegate void Set(float endurancy, float spellPower);
 
+    //Класc-контейнер методов расчета/расширений
     public static class Calculate
     {
         static Calculate() { }
         
+
+
+        //Метод инкремента базовой сз/са
         public static float CalculatePersentBonus(BonusBase bonusBase)
         {
             return (float)bonusBase.Value / 100 + 1;

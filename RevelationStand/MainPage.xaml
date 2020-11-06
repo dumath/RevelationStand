@@ -199,16 +199,26 @@
                         <TextBlock Text="Игнорирование сопротивления"/>
                         <TextBlock Text="0"/>
                     </StackPanel>
+                    <!--ЗАЩИТА-->
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Защита"/>
-                        <TextBlock Text="{Binding Druid.Defence.Value}"/>
+                        <TextBlock Text="{Binding Druid.Defence.Value}">
+                            <ToolTipService.ToolTip>
+                                <StackPanel Orientation="Horizontal" Spacing="5">
+                                    <TextBlock Text="Базовая защита :"/>
+                                    <TextBlock x:Name="baseDefence" Text="0"/>
+                                    <TextBlock Text="Модификатор :"/>
+                                    <TextBlock x:Name="modifierDefence" Text="{Binding Druid.Defence.Modifier.Value}"/>
+                                </StackPanel>
+                            </ToolTipService.ToolTip>
+                        </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Бонус к защите"/>
-                        <TextBlock Text="0"/>
+                        <TextBlock Text="{Binding Druid.Endurancy.BonusBase.Value}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Сопроивление"/>
+                        <TextBlock Text="Сопротивление"/>
                         <TextBlock Text="0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
