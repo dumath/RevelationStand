@@ -32,9 +32,7 @@ namespace RevelationStand
         private Speed _speed; //TODO: Забиндить, при описании баф/дебаф. Биндится только на инициализации.
         private HP _hp;
         private MP _mp;
-        
-        private Defence _defence; //Возможно переделка. Слишком много сходств(!)
-
+        private Defence _defence;
         #endregion
 
         #region Constructors
@@ -54,8 +52,6 @@ namespace RevelationStand
             this._spellPower.Set += _mp.Set;
             this._defence = new Defence(100.0f, this._endurancy); //TODO: Тестовая загрушка (100.0f)
             this._endurancy.Set += _defence.Set;
-
-
         }
         #endregion
 

@@ -97,7 +97,10 @@ namespace Characteristic
 
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         #endregion
     }
@@ -189,7 +192,10 @@ namespace Characteristic
 
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         #endregion
     }
@@ -258,7 +264,7 @@ namespace Characteristic
             this._value++;
             OnPropertyChanged(nameof(Value));
             this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
-            this._set(1.0f, 0.0f);
+            Set(1.0f, 0.0f);
         }
 
         //Метод убавления 1 единицы характеристики
@@ -269,7 +275,7 @@ namespace Characteristic
                 this._value--;
                 OnPropertyChanged(nameof(Value));
                 this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
-                this._set(-1.0f, 0.0f);
+                Set(-1.0f, 0.0f);
             }
 
         }
@@ -277,7 +283,10 @@ namespace Characteristic
         //Вызов события , при изменении значения
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         #endregion
     }
@@ -359,7 +368,10 @@ namespace Characteristic
         //Вызываем событие UI , при изменении значении SP
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         #endregion 
     }
@@ -407,7 +419,10 @@ namespace Characteristic
 
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
     #endregion
@@ -437,7 +452,10 @@ namespace Characteristic
 
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
 
@@ -473,7 +491,10 @@ namespace Characteristic
         #region Methods
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         #endregion
     }
@@ -507,7 +528,10 @@ namespace Characteristic
         #region Methods
         private void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         #endregion
 
@@ -543,7 +567,10 @@ namespace Characteristic
         #region Methods
         private void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         #endregion
     } 
@@ -569,15 +596,20 @@ namespace Characteristic
             set
             {
                 this._value = value;
-                this.OnPropertyChanged(nameof(this.Value));
+                this.OnPropertyChanged(nameof(Value));
             }
         }
         #endregion
 
         #region Methods
+
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if(PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+            
         }
         #endregion
 
@@ -642,7 +674,10 @@ namespace Characteristic
 
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         #endregion
 
@@ -678,7 +713,10 @@ namespace Characteristic
         #region Methods
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         /// <summary>
@@ -743,13 +781,17 @@ namespace Characteristic
         #region Methods
         private void OnPropertyChanged(string propertyName)
         {
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         public void Set(float endurancy, float spellPower)
         {
-            this._modifier.Value = this._modifier.Value + endurancy * Endurancy.DEFENCE_PER_ONE_VALUE;
-            this.OnPropertyChanged(nameof(Value));
+            this._modifier.Value += endurancy * Endurancy.DEFENCE_PER_ONE_VALUE;
+            this._value = this._base + this._modifier.Value;
+            OnPropertyChanged(nameof(Value));
         }
         #endregion
     }
