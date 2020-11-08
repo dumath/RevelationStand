@@ -264,7 +264,7 @@ namespace Characteristic
             this._value++;
             OnPropertyChanged(nameof(Value));
             this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
-            Set(1.0f, 0.0f);
+            Set(1.0f, 0.0f, BonusBase);
         }
 
         //Метод убавления 1 единицы характеристики
@@ -275,7 +275,7 @@ namespace Characteristic
                 this._value--;
                 OnPropertyChanged(nameof(Value));
                 this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
-                Set(-1.0f, 0.0f);
+                Set(-1.0f, 0.0f, BonusBase);
             }
 
         }
@@ -304,6 +304,7 @@ namespace Characteristic
         #region Fields
         private float _value; // Основное значение характеристики
         private Bonus _bonus; // Бонус к основному значению от гринда
+        private BonusBase _bonusBase; //TODO: Реализовать свойство + механику
         public event PropertyChangedEventHandler PropertyChanged; // Событие интерфейса
         #endregion
 
@@ -351,7 +352,7 @@ namespace Characteristic
         {
             this._value++;
             OnPropertyChanged(nameof(Value));
-            Set(0.0f, 1.0f);
+            Set(0.0f, 1.0f, _bonusBase);
         }
 
         //Убавляем одну единицу из SP
@@ -361,7 +362,7 @@ namespace Characteristic
             {
                 this._value--;
                 OnPropertyChanged(nameof(Value));
-                Set(0.0f, -1.0f);
+                Set(0.0f, -1.0f, _bonusBase);
             }
         }
 
@@ -665,7 +666,7 @@ namespace Characteristic
 
         #region Methods
 
-        public void Set(float endurancy = 0.0f, float spellPower = 0.0f)
+        public void Set(float endurancy, float spellPower, BonusBase bonusBase)
         {
             this._value += (endurancy * Endurancy.HP_PER_ONE_VALUE) + (spellPower * SpellPower.HP_PER_ONE_VALUE);
             OnPropertyChanged(nameof(Value));
@@ -724,7 +725,7 @@ namespace Characteristic
         /// </summary>
         /// <param name="spellPower">Входящая прибавка к силе духа</param>
         /// <param name="stub">Заглушка(аналог метода адаптера)</param>
-        public void Set(float stub = 0, float spellPower = 0)
+        public void Set(float stub, float spellPower, BonusBase bonusBase)
         {
             this._value += spellPower * SpellPower.MP_PER_VALUE;
             OnPropertyChanged(nameof(Value));
@@ -787,17 +788,21 @@ namespace Characteristic
             }
         }
 
-        public void Set(float endurancy, float spellPower)
+        public void Set(float endurancy, float spellPower, BonusBase bonusBase)
         {
-            this._modifier.Value += endurancy * Endurancy.DEFENCE_PER_ONE_VALUE;
-            this._value = this._base + this._modifier.Value;
-            OnPropertyChanged(nameof(Value));
+            if(endurancy != 0.0f)
+            {
+                this._modifier.Value += endurancy * Endurancy.DEFENCE_PER_ONE_VALUE;
+                this._value = this._base * Calculate.CalculatePersentBonus(bonusBase) + this._modifier.Value;
+                OnPropertyChanged(nameof(Value));
+            }
+            
         }
         #endregion
     }
 
 
-    public delegate void Set(float endurancy, float spellPower);
+    public delegate void Set(float endurancy, float spellPower, BonusBase bonusBase); 
 
     //Класc-контейнер методов расчета/расширений
     public static class Calculate
