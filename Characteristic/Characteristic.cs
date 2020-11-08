@@ -795,6 +795,7 @@ namespace Characteristic
                 this._modifier.Value += endurancy * Endurancy.DEFENCE_PER_ONE_VALUE;
                 this._value = this._base * Calculate.CalculatePersentBonus(bonusBase) + this._modifier.Value;
                 OnPropertyChanged(nameof(Value));
+                OnPropertyChanged(nameof(Base));
             }
             
         }

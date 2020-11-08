@@ -19,10 +19,12 @@ namespace RevelationStand
         // 0лвл уровень HP - 360 MP 250
         // Изначально Druid LVL == 1;
         public int Lvl = 1; // TODO: Определить структуру(как отдельный тип)
-        // За каждый лвл дается 72хп и 50мп
+                            // За каждый лвл дается 72хп и 50мп
 
-        public const float HP_PER_LVL = 72.0f;
-        public const float MP_PER_LVL = 50.0f;
+        private const float FIRST_LVL_HP = 360.0f;
+        private const float FIRST_LVL_MP = 250.0f;
+        private const float HP_PER_LVL = 72.0f;
+        private const float MP_PER_LVL = 50.0f;
         #region Fields
         private Strange _strange;
         private Intellegency _intellegency;
