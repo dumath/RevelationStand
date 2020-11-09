@@ -35,6 +35,7 @@ namespace RevelationStand
         private HP _hp;
         private MP _mp;
         private Defence _defence;
+        private Resist _resist;
         #endregion
 
         #region Constructors
@@ -53,7 +54,9 @@ namespace RevelationStand
             this._mp = new MP(250.0f + Druid.MP_PER_LVL, this._spellPower.Value);
             this._spellPower.Set += _mp.Set;
             this._defence = new Defence(100.0f, this._endurancy); //TODO: Тестовая загрушка (100.0f)
+            this._resist = new Resist(100.0f, this._spellPower); //TODO: Тестовая загулшка (100.0f)
             this._endurancy.Set += _defence.Set;
+            this._spellPower.Set += _resist.Set;
         }
         #endregion
 
@@ -101,6 +104,11 @@ namespace RevelationStand
         public Defence Defence
         {
             get => this._defence;
+        }
+
+        public Resist Resist
+        {
+            get => this._resist;
         }
         #endregion
     }

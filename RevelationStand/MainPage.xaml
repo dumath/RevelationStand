@@ -220,20 +220,20 @@
                     <!--СОПРОТИВЛЕНИЕ (class Resist)-->
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Сопротивление"/>
-                        <TextBlock Text="0">
+                        <TextBlock Text="{Binding Druid.Resist.Value}">
                             <ToolTipService.ToolTip>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock/>
-                                    <TextBlock/>
-                                    <TextBlock/>
-                                    <TextBlock/>
+                                <StackPanel Orientation="Horizontal" Spacing="5">
+                                    <TextBlock Text="Базовое сопротивление:"/>
+                                    <TextBlock x:Name="baseResist" Text="{Binding Druid.Resist.Base}"/>
+                                    <TextBlock Text=" Модификатор:"/>
+                                    <TextBlock x:Name="modifierResist" Text="{Binding Druid.Resist.Modifier.Value}"/>
                                 </StackPanel>
                             </ToolTipService.ToolTip>
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Бонус к сопротивлению"/>
-                        <TextBlock Text="0"/>
+                        <TextBlock Text="{Binding Druid.SpellPower.BonusBase.Value}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="30">
                         <TextBlock Text="Лечение"/>

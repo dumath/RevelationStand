@@ -296,7 +296,7 @@ namespace Characteristic
     public class SpellPower : INotifyPropertyChanged
     {
         /* Каждая единица силы духа прибавляет 25 ед к хп, 10 единиц к мп, 1.6f к лечению, 8ед к resist(модификатор?-зайти в игру потестить стат).
-           Каждые 10 единиц СД увеличивают реген хп на 1ед(!не понадобится), и дает 4% к бонусу базового resist */ 
+           Каждые 10 единиц СД увеличивают реген хп на 1ед(!не понадобится), и дает 4% к бонусу базового resist */
         public const float HP_PER_ONE_VALUE = 25.0f; //1 _value == 25.0f hp
         public const float RESISTANCE_PER_ONE_VALUE = 8.0f; // 1 _value == 8.0f resist
         public const float MP_PER_VALUE = 10.0f; // 1 _value == 10.0f mp
@@ -317,6 +317,7 @@ namespace Characteristic
         {
             this._value = value;
             this._bonus = new Bonus();
+            this._bonusBase = new BonusBase(this._value);
         }
         #endregion
 
@@ -333,10 +334,11 @@ namespace Characteristic
         }
 
         //Свойство бонуса к основному значению
-        public Bonus Bonus
-        {
-            get => this._bonus;
-        }
+        public Bonus Bonus { get => this._bonus; }
+
+        //Свойство бонуса к базовсой СЗ
+        public BonusBase BonusBase  { get => this._bonusBase; }
+       
 
         //Свойство делегата. Класс HP и MP зависят от основного значения SP
         public Set Set
@@ -351,6 +353,7 @@ namespace Characteristic
         public void Add()
         {
             this._value++;
+            this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
             OnPropertyChanged(nameof(Value));
             Set(0.0f, 1.0f, _bonusBase);
         }
@@ -358,9 +361,10 @@ namespace Characteristic
         //Убавляем одну единицу из SP
         public void Sub()
         {
-            if (this._value != 1)
+            if (this._value != 1.0f)
             {
                 this._value--;
+                this._bonusBase.Value = (int)Math.Round(this._value + _bonus.Value) / 10 * 4;
                 OnPropertyChanged(nameof(Value));
                 Set(0.0f, -1.0f, _bonusBase);
             }
@@ -471,9 +475,9 @@ namespace Characteristic
         #endregion
 
         #region Constructors
-        public BonusBase(float strange)
+        public BonusBase(float characteristic)
         {
-            this._value = (int)Math.Round(strange) / 10 * 4;
+            this._value = (int)Math.Round(characteristic) / 10 * 4;
         }
         #endregion
 
@@ -798,6 +802,73 @@ namespace Characteristic
                 OnPropertyChanged(nameof(Base));
             }
             
+        }
+        #endregion
+    }
+
+    public class Resist : INotifyPropertyChanged
+    {
+        #region Fields
+        private float _value;
+        private float _base;
+        private Modifier _modifier;
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Constructors
+        public Resist(float baseResist, SpellPower spellPower)
+        {
+            this._base = baseResist;
+            this._modifier = new Modifier(spellPower.Value * SpellPower.RESISTANCE_PER_ONE_VALUE);
+            this._value = this._base * Calculate.CalculatePersentBonus(spellPower.BonusBase) + this._modifier.Value;
+        }
+        #endregion
+
+        #region Propertyes
+        //Свойство Общего сопротивления
+        public float Value
+        {
+            get => this._value;
+            set
+            {
+                this._value = value;
+                this.OnPropertyChanged(nameof(Value));
+            }
+        }
+
+        //Свойство базового сопротивления
+        public float Base
+        {
+            get => this._base;
+            set
+            {
+                this._base = value;
+                this.OnPropertyChanged(nameof(Base));
+            }
+        }
+
+        //Свойство Модификатора сопротивления
+        public Modifier Modifier { get => this._modifier; }
+        #endregion
+
+        #region Methods
+        public void Set(float endurancy, float spellPower, BonusBase bonusBase)
+        {
+            if(spellPower != 0)
+            {
+                this._modifier.Value += spellPower * SpellPower.RESISTANCE_PER_ONE_VALUE;
+                this._value = this._base * Calculate.CalculatePersentBonus(bonusBase) + this._modifier.Value;
+                this.OnPropertyChanged(nameof(Value));
+                this.OnPropertyChanged(nameof(Modifier));
+            }
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if(PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         #endregion
     }
