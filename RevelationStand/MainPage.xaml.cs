@@ -44,29 +44,37 @@ namespace RevelationStand
 
         private void add_click(object sender, TappedRoutedEventArgs e)
         {
-            Button button = sender as Button;
-
-            if(sender != null)
+            try
             {
-                switch(button.Name)
+                Button button = sender as Button;
+
+                if (sender != null)
                 {
-                    case "addStrange":
-                        this.view.Druid.Strange.Add();
-                        break;
-                    case "addIntellegency":
-                        this.view.Druid.Intellegency.Add();
-                        break;
-                    case "addEndurancy":
-                        this.view.Druid.Endurancy.Add();
-                        break;
-                    case "addSpellPower":
-                        this.view.Druid.SpellPower.Add();
-                        break;
-                    case "addAgility":
-                        this.view.Druid.Agility.Add();
-                        break;
-                    default: throw new ArgumentException("Wrong Name");
+                    switch (button.Name)
+                    {
+                        case "addStrange":
+                            this.view.Druid.Strange.Add();
+                            break;
+                        case "addIntellegency":
+                            this.view.Druid.Intellegency.Add();
+                            break;
+                        case "addEndurancy":
+                            this.view.Druid.Endurancy.Add();
+                            break;
+                        case "addSpellPower":
+                            this.view.Druid.SpellPower.Add();
+                            break;
+                        case "addAgility":
+                            this.view.Druid.Agility.Add();
+                            break;
+                        default: throw new ArgumentException("Wrong Name");
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageDialog message = new MessageDialog(ex.Message);
+                message.ShowAsync();
             }
 
             
@@ -74,30 +82,39 @@ namespace RevelationStand
 
         private void sub_click(object sender, TappedRoutedEventArgs e)
         {
-            Button button = sender as Button;
-
-            if (sender != null)
+            try
             {
-                switch (button.Name)
+                Button button = sender as Button;
+
+                if (sender != null)
                 {
-                    case "subStrange":
-                        this.view.Druid.Strange.Sub();
-                        break;
-                    case "subIntellegency":
-                        this.view.Druid.Intellegency.Sub();
-                        break;
-                    case "subEndurancy":
-                        this.view.Druid.Endurancy.Sub();
-                        break;
-                    case "subSpellPower":
-                        this.view.Druid.SpellPower.Sub();
-                        break;
-                    case "subAgility":
-                        this.view.Druid.Agility.Sub();
-                        break;
-                    default: throw new ArgumentException("Wrong Name");
+                    switch (button.Name)
+                    {
+                        case "subStrange":
+                            this.view.Druid.Strange.Sub();
+                            break;
+                        case "subIntellegency":
+                            this.view.Druid.Intellegency.Sub();
+                            break;
+                        case "subEndurancy":
+                            this.view.Druid.Endurancy.Sub();
+                            break;
+                        case "subSpellPower":
+                            this.view.Druid.SpellPower.Sub();
+                            break;
+                        case "subAgility":
+                            this.view.Druid.Agility.Sub();
+                            break;
+                        default: throw new ArgumentException("Wrong Name");
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                MessageDialog message = new MessageDialog(ex.Message);
+                message.ShowAsync();
+            }
+            
         }
     }
 }
