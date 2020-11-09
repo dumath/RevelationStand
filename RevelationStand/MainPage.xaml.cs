@@ -18,12 +18,14 @@ using Windows.UI.Popups;
 
 namespace RevelationStand
 {
+    
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
     public sealed partial class MainPage : Page
     {
         ViewModel view;
+        
 
         public MainPage()
         {
@@ -33,6 +35,8 @@ namespace RevelationStand
                 view = new ViewModel();
                 DataContext = view;
                 lvl.Text =$"Уровень: {view.Druid.Lvl.ToString()}";
+                
+
             }
             catch(Exception ex)
             {
@@ -116,5 +120,6 @@ namespace RevelationStand
             }
             
         }
+
     }
 }

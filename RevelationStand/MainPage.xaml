@@ -10,44 +10,10 @@
     >
 
     <Grid >
-        <Grid x:Name="MainPageCalc"  Margin="10,0,10,0" Visibility="Collapsed" Background="{StaticResource MinBackGround}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Раздел иконок скилла-->
-            <Image x:Name="sproutsOfLife" Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="3" VerticalAlignment="Center" Width="30" Source="Images/SproutsOfLife.png"/>
-            <Image x:Name="leafFall"      Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="4" VerticalAlignment="Center" Width="30" Source="Images/LeafFall.png"/>
-            <Image x:Name="climbingVines" Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="5" VerticalAlignment="Center" Width="30" Source="Images/ClimbingVines.png"/>
-            <Image x:Name="wildBloom"     Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="6" VerticalAlignment="Center" Width="30" Source="Images/WildBloom.png"/>
-            <Image x:Name="springShower"  Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="7" VerticalAlignment="Center" Width="30" Source="Images/SpringShower.png"/>
-            <Image x:Name="streamOfLife"  Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="8" VerticalAlignment="Center" Width="30" Source="Images/StreamOfLife.png"/>
-
-           
-        </Grid>
-
-
+        <!--Разметка левой панели сплит контейнера(Меню) -->
         <SplitView x:Name="MainView" PaneBackground="Gray" OpenPaneLength="200" DisplayMode="Inline" IsPaneOpen="True">
             <SplitView.Pane>
-                <Grid>
+                <Grid Visibility="Visible">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="3*"/>
@@ -61,7 +27,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="charactetistic" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Menu" FontSize="14" TextAlignment="Center"/>
                     <ListView  x:Name="navButtons"     Grid.Row="2" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,20,0,0">
-                        <ListViewItem x:Name="goToCharacteristicGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsSelected="True" Content="Харакетристика"/>
+                        <ListViewItem x:Name="goToCharacteristicGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Харакетристика" IsSelected="True"/>
                         <ListViewItem x:Name="goToArmorGrid"          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Броня"    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                         <ListViewItem x:Name="goToVehaGrid"           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Вехи"     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                         <ListViewItem x:Name="goToStoneGrid"          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Брактеат" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
@@ -74,135 +40,136 @@
                 </Grid>
             </SplitView.Pane>
 
-            <!--Разметка окна характеристик-->
-            <Grid x:Name="characteristicGrid" Background="{ThemeResource AppBarBackgroundThemeBrush }" Visibility="Visible" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="7*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock x:Name="characteristicWindow" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Text="Характеристики" Margin="30,0,0,0"/>
-                <TextBlock x:Name="lvl"                  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Text="" Margin="30,0,0,0"/>
-                <Grid Grid.Row="1" Grid.Column="1">
+            <Grid Background="{StaticResource AppBarBackgroundThemeBrush}">
+                <!--Разметка окна характеристик-->
+                <Grid x:Name="characteristicGrid" Visibility="Visible"  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition MinHeight="50" Height="10*"/>
-                        <RowDefinition MinHeight="50" Height="10*"/>
-                        <RowDefinition MinHeight="50" Height="10*"/>
-                        <RowDefinition MinHeight="50" Height="10*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="5*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition MinWidth="100" Width="10*"/>
-                        <ColumnDefinition MinWidth="100" Width="10*"/>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
-                    <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Сила" ToolTipService.ToolTip="Каждая единица силы увеличивает на 1 ед. модификатор силы атаки. Каждые 10 единиц силы увеличивают бонус к базовой силе атаки на 4%"/>
-                        <Button x:Name="subStrange" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="60,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click" />
-                        <TextBlock Text="{Binding Druid.Strange.Value}" />
-                        <Button x:Name="addStrange" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
-                        <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Strange.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
-                    </StackPanel>
-                    <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Интеллект" ToolTipService.ToolTip="Каждая единица интеллекта, увеличивает модификатор силы заклинаний на 1 ед., модификатор лечения на 0,6 ед. Каждые 10 единиц, увеличивают бонус к базовой силе заклинаний на 4%"/>
-                        <Button x:Name="subIntellegency" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="25,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
-                        <TextBlock Text="{Binding Druid.Intellegency.Value}"/>
-                        <Button x:Name="addIntellegency" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
-                        <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Intellegency.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
-                    </StackPanel>
-                    <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Выносливость" ToolTipService.ToolTip="Каждая единица выносливости, увеличивает запас здоровья на 29 ед., модификатор(!) защиты на 8ед. Каждые 10 единиц выносливости увеличивают бонус к базовой защите на 4%"/>
-                        <Button x:Name="subEndurancy" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
-                        <TextBlock Text="{Binding Druid.Endurancy.Value}"/>
-                        <Button x:Name="addEndurancy" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
-                        <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Endurancy.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
-                    </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Сила духа" ToolTipService.ToolTip="Каждая единица силы духа, увеличивает запас здоровья на 25 ед., запас маны на 10 ед., модификатор лечения на 1,6 ед., модификатор сопротивления на 8 ед. Каждые 10 единиц силы духа, увеличивают бонус к базовому сопротивлению на 4%"/>
-                        <Button x:Name="subSpellPower" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
-                        <TextBlock Text="{Binding Druid.SpellPower.Value}"/>
-                        <Button x:Name="addSpellPower" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
-                        <TextBlock Margin="10,0,0,0" Text="{Binding Druid.SpellPower.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
-                    </StackPanel>
-                    <StackPanel Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                        <TextBlock Text="Ловкость" ToolTipService.ToolTip="Каждая единица ловкости, увеличивает критический удар на 2 ед."/>
-                        <Button x:Name="subAgility" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
-                        <TextBlock Text="{Binding Druid.Agility.Value}"/>
-                        <Button x:Name="addAgility" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
-                        <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Agility.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
-                    </StackPanel>
-                    
-                    <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="50" Margin="10,10,0,0">
-                        <TextBlock Text="Здоровье" FontSize="16"/>
-                        <TextBlock Text="{Binding Druid.HP.Value}" FontSize="16"/>
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center"  Spacing="50" Margin="10,10,0,0">
-                        <TextBlock Text="Мана" FontSize="16"/>
-                        <TextBlock Text="{Binding Druid.MP.Value}" FontSize="16"/>
-                    </StackPanel>
-                </Grid>
+                    <TextBlock x:Name="characteristicWindow" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Text="Характеристики" Margin="30,0,0,0"/>
+                    <TextBlock x:Name="lvl"                  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Text="" Margin="30,0,0,0"/>
+                    <Grid Grid.Row="1" Grid.Column="1" Visibility="Visible">
+                        <!--Окно характеристик-->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition MinHeight="50" Height="10*"/>
+                            <RowDefinition MinHeight="50" Height="10*"/>
+                            <RowDefinition MinHeight="50" Height="10*"/>
+                            <RowDefinition MinHeight="50" Height="10*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition MinWidth="100" Width="10*"/>
+                            <ColumnDefinition MinWidth="100" Width="10*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
 
+                        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
+                            <TextBlock Text="Сила" ToolTipService.ToolTip="Каждая единица силы увеличивает на 1 ед. модификатор силы атаки. Каждые 10 единиц силы увеличивают бонус к базовой силе атаки на 4%"/>
+                            <Button x:Name="subStrange" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="60,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click" />
+                            <TextBlock Text="{Binding Druid.Strange.Value}" />
+                            <Button x:Name="addStrange" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
+                            <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Strange.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
+                            <TextBlock Text="Интеллект" ToolTipService.ToolTip="Каждая единица интеллекта, увеличивает модификатор силы заклинаний на 1 ед., модификатор лечения на 0,6 ед. Каждые 10 единиц, увеличивают бонус к базовой силе заклинаний на 4%"/>
+                            <Button x:Name="subIntellegency" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="25,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
+                            <TextBlock Text="{Binding Druid.Intellegency.Value}"/>
+                            <Button x:Name="addIntellegency" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
+                            <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Intellegency.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
+                            <TextBlock Text="Выносливость" ToolTipService.ToolTip="Каждая единица выносливости, увеличивает запас здоровья на 29 ед., модификатор(!) защиты на 8ед. Каждые 10 единиц выносливости увеличивают бонус к базовой защите на 4%"/>
+                            <Button x:Name="subEndurancy" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
+                            <TextBlock Text="{Binding Druid.Endurancy.Value}"/>
+                            <Button x:Name="addEndurancy" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
+                            <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Endurancy.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
+                            <TextBlock Text="Сила духа" ToolTipService.ToolTip="Каждая единица силы духа, увеличивает запас здоровья на 25 ед., запас маны на 10 ед., модификатор лечения на 1,6 ед., модификатор сопротивления на 8 ед. Каждые 10 единиц силы духа, увеличивают бонус к базовому сопротивлению на 4%"/>
+                            <Button x:Name="subSpellPower" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
+                            <TextBlock Text="{Binding Druid.SpellPower.Value}"/>
+                            <Button x:Name="addSpellPower" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
+                            <TextBlock Margin="10,0,0,0" Text="{Binding Druid.SpellPower.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
+                            <TextBlock Text="Ловкость" ToolTipService.ToolTip="Каждая единица ловкости, увеличивает критический удар на 2 ед."/>
+                            <Button x:Name="subAgility" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
+                            <TextBlock Text="{Binding Druid.Agility.Value}"/>
+                            <Button x:Name="addAgility" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
+                            <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Agility.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
+                        </StackPanel>
 
-                <!--Все характеристики. 2 Часть SplitView. Блок характеристик -->
-                <ListView Grid.Row="2" Grid.Column="1" Margin="20,20,0,0">
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <!--Базовая сила атаки + модификатор-->
-                        <TextBlock Text="Сила Атаки" />
-                        <TextBlock Text="{Binding Druid.Strange.Modifier.Value}" />
-                        <TextBlock Text="-" Width="5"/>
-                        <TextBlock Text="{Binding Druid.Strange.Modifier.Value}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Бонус к силе атаки"/>
-                        <TextBlock Text="{Binding Druid.Strange.BonusBase.Value}" ToolTipService.ToolTip="Процентное увеличение базовой мин и макс СА"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Сила заклинаний"/>
-                        <TextBlock Text="{Binding Druid.Intellegency.Modifier.Value}"/>
-                        <TextBlock Text="-" Width="5"/>
-                        <TextBlock Text="{Binding Druid.Intellegency.Modifier.Value}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Бонус к силе заклинаний"/>
-                        <TextBlock Text="{Binding Druid.Intellegency.BonusBase.Value}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Скорость"/>
-                        <TextBlock Text="{Binding Druid.Speed.Value}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Точность"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Критический удар"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Критический урон"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Обход защиты"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Игнорирование сопротивления"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <!--ЗАЩИТА (class Defence)-->
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Защита"/>
-                        <TextBlock Text="{Binding Druid.Defence.Value}">
+                        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="50" Margin="10,10,0,0">
+                            <TextBlock Text="Здоровье" FontSize="16"/>
+                            <TextBlock Text="{Binding Druid.HP.Value}" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center"  Spacing="50" Margin="10,10,0,0">
+                            <TextBlock Text="Мана" FontSize="16"/>
+                            <TextBlock Text="{Binding Druid.MP.Value}" FontSize="16"/>
+                        </StackPanel>
+                    </Grid>
+                    <!--Все характеристики. 2 Часть SplitView. Блок характеристик -->
+                    <ListView Grid.Row="2" Grid.Column="1" Margin="20,20,0,0" Visibility="Visible">
+                        <!--Окно характеристик-->
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <!--Базовая сила атаки + модификатор-->
+                            <TextBlock Text="Сила Атаки" />
+                            <TextBlock Text="{Binding Druid.Strange.Modifier.Value}" />
+                            <TextBlock Text="-" Width="5"/>
+                            <TextBlock Text="{Binding Druid.Strange.Modifier.Value}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Бонус к силе атаки"/>
+                            <TextBlock Text="{Binding Druid.Strange.BonusBase.Value}" ToolTipService.ToolTip="Процентное увеличение базовой мин и макс СА"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Сила заклинаний"/>
+                            <TextBlock Text="{Binding Druid.Intellegency.Modifier.Value}"/>
+                            <TextBlock Text="-" Width="5"/>
+                            <TextBlock Text="{Binding Druid.Intellegency.Modifier.Value}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Бонус к силе заклинаний"/>
+                            <TextBlock Text="{Binding Druid.Intellegency.BonusBase.Value}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Скорость"/>
+                            <TextBlock Text="{Binding Druid.Speed.Value}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Точность"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Критический удар"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Критический урон"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Обход защиты"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Игнорирование сопротивления"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <!--ЗАЩИТА (class Defence)-->
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Защита"/>
+                            <TextBlock Text="{Binding Druid.Defence.Value}">
                             <ToolTipService.ToolTip>
                                 <StackPanel Orientation="Horizontal" Spacing="5">
                                     <TextBlock Text="Базовая защита :"/>
@@ -212,15 +179,15 @@
                                 </StackPanel>
                             </ToolTipService.ToolTip>
                         </TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Бонус к защите"/>
-                        <TextBlock Text="{Binding Druid.Endurancy.BonusBase.Value}"/>
-                    </StackPanel>
-                    <!--СОПРОТИВЛЕНИЕ (class Resist)-->
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Сопротивление"/>
-                        <TextBlock Text="{Binding Druid.Resist.Value}">
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Бонус к защите"/>
+                            <TextBlock Text="{Binding Druid.Endurancy.BonusBase.Value}"/>
+                        </StackPanel>
+                        <!--СОПРОТИВЛЕНИЕ (class Resist)-->
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Сопротивление"/>
+                            <TextBlock Text="{Binding Druid.Resist.Value}">
                             <ToolTipService.ToolTip>
                                 <StackPanel Orientation="Horizontal" Spacing="5">
                                     <TextBlock Text="Базовое сопротивление:"/>
@@ -230,92 +197,153 @@
                                 </StackPanel>
                             </ToolTipService.ToolTip>
                         </TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Бонус к сопротивлению"/>
-                        <TextBlock Text="{Binding Druid.SpellPower.BonusBase.Value}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Лечение"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Уклонение"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Устойчивость к критическому удару"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Сопротивление критическому урону"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Блокирование"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Блокируемый урон"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Сила ярости"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Устойчивость к силе ярости"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Доп. урон PvE"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Доп. защита PvE"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Доп. урон PvP"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Доп. защита PvP"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Сила Атаки"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Усиление физических эффектов"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Устойчивость к физ. урону"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Усиление магических эффектов"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Устойчивость к маг. урону"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Усиление эффектов лечения"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Урон боссам"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="30">
-                        <TextBlock Text="Сопротивление обходу защиты"/>
-                        <TextBlock Text="0"/>
-                    </StackPanel>
-                </ListView>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Бонус к сопротивлению"/>
+                            <TextBlock Text="{Binding Druid.SpellPower.BonusBase.Value}"/>
+                        </StackPanel>
+                        <!--Лечение (class ...)-->
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Лечение"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Уклонение"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Устойчивость к критическому удару"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Сопротивление критическому урону"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Блокирование"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Блокируемый урон"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Сила ярости"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Устойчивость к силе ярости"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Доп. урон PvE"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Доп. защита PvE"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Доп. урон PvP"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Доп. защита PvP"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Сила Атаки"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Усиление физических эффектов"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Устойчивость к физ. урону"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Усиление магических эффектов"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Устойчивость к маг. урону"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Усиление эффектов лечения"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Урон боссам"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="30">
+                            <TextBlock Text="Сопротивление обходу защиты"/>
+                            <TextBlock Text="0"/>
+                        </StackPanel>
+                    </ListView>
+                </Grid>
+                
+                <!--Окно Брони(гринда)-->
+                <Grid x:Name="armorGrid" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                
+                <!--Окно Вех(доп бонусы)-->
+                <Grid x:Name="vehaGrid" Visibility="Collapsed">
+                    
+                </Grid>
+                
+                <!--Окно Брактеата. Взаимодействие будет выполнено рисунками. (Доп бонусы от камней-->
+                <GridView x:Name="stoneGrid">
+                    
+                </GridView>
+                 
+                <!-- Окно умении (Скиллы)-->
+                <Grid x:Name="skillsGrid" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Раздел иконок скилла-->
+                    <Image x:Name="sproutsOfLife" Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="3" VerticalAlignment="Center" Width="30" Source="Images/SproutsOfLife.png"/>
+                    <Image x:Name="leafFall"      Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="4" VerticalAlignment="Center" Width="30" Source="Images/LeafFall.png"/>
+                    <Image x:Name="climbingVines" Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="5" VerticalAlignment="Center" Width="30" Source="Images/ClimbingVines.png"/>
+                    <Image x:Name="wildBloom"     Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="6" VerticalAlignment="Center" Width="30" Source="Images/WildBloom.png"/>
+                    <Image x:Name="springShower"  Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="7" VerticalAlignment="Center" Width="30" Source="Images/SpringShower.png"/>
+                    <Image x:Name="streamOfLife"  Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="8" VerticalAlignment="Center" Width="30" Source="Images/StreamOfLife.png"/>
+
+
+                </Grid>
             </Grid>
         </SplitView>
 
