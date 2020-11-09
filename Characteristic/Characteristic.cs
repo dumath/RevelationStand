@@ -744,6 +744,7 @@ namespace Characteristic
         private float _value; //Общая защита
         private float _base; //TODO: Переделать в отдельный класс//Базовая защита
         private Modifier _modifier; //Модификатор защиты
+        private float _persentDefence; //TODO:Процент уменьшение физ урона: Определить методы , свойства, разметку (!зависит от общей защиты) 
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
@@ -812,6 +813,7 @@ namespace Characteristic
         private float _value;
         private float _base;
         private Modifier _modifier;
+        private float _persentResist; //TODO:Процент уменьшение маг урона: Определить методы , свойства, разметку (!зависит от общего сопротивления) 
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
