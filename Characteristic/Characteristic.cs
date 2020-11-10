@@ -875,6 +875,85 @@ namespace Characteristic
         #endregion
     }
 
+    public class Veha : INotifyPropertyChanged
+    {
+        private bool _imperial;
+        private bool _oro;
+        private bool _akari;
+        private bool _kuromi;
+        private bool _ren;
+        private bool _atum;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public bool Imperial
+        {
+            get => _imperial;
+            set
+            {
+                this._imperial = value;
+                this.OnPropertyChanged(nameof(Imperial));
+            }
+        }
+
+        public bool Oro
+        {
+            get => _oro;
+            set
+            {
+                this._oro = value;
+                this.OnPropertyChanged(nameof(Oro));
+            }
+        }
+
+        public bool Akari
+        {
+            get => _akari;
+            set
+            {
+                this._akari = value;
+                this.OnPropertyChanged(nameof(Akari));
+            }
+        }
+
+        public bool Kuromi
+        {
+            get => _kuromi;
+            set
+            {
+                this._kuromi = value;
+                this.OnPropertyChanged(nameof(Kuromi));
+            }
+        }
+
+        public bool Ren
+        {
+            get => _ren;
+            set
+            {
+                this._ren = value;
+                this.OnPropertyChanged(nameof(Ren));
+            }
+        }
+
+        public bool Atum
+        {
+            get => _atum;
+            set
+            {
+                this._atum = value;
+                this.OnPropertyChanged(nameof(Atum));
+            }
+        }
+
+        #region Methods
+        private void OnPropertyChanged(string propertyName)
+        {
+            if(PropertyChanged != null)
+               PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+    }
+
 
     public delegate void Set(float endurancy, float spellPower, BonusBase bonusBase); 
 

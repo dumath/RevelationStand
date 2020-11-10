@@ -127,7 +127,7 @@ namespace RevelationStand
             {
                 if (navButtons != null)
                 {
-                    switch (navButtons.SelectedIndex)
+                    switch (navButtons.SelectedIndex) //TODO: Переделать в простое : Временная заглушка
                     {
                         case 0:
                             characteristicGrid.Visibility = Visibility.Visible;

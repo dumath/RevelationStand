@@ -36,6 +36,7 @@ namespace RevelationStand
         private MP _mp;
         private Defence _defence;
         private Resist _resist;
+        private Veha _veha;
         #endregion
 
         #region Constructors
@@ -57,6 +58,7 @@ namespace RevelationStand
             this._resist = new Resist(100.0f, this._spellPower); //TODO: Тестовая загулшка (100.0f)
             this._endurancy.Set += _defence.Set;
             this._spellPower.Set += _resist.Set;
+            this._veha = new Veha();
         }
         #endregion
 
@@ -109,6 +111,11 @@ namespace RevelationStand
         public Resist Resist
         {
             get => this._resist;
+        }
+
+        public Veha Veha
+        {
+            get => this._veha;
         }
         #endregion
     }

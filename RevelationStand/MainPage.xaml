@@ -313,37 +313,37 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="20,20,0,0" Orientation="Vertical" Spacing="5">
-                        <CheckBox Content="Веха Императора">
+                        <CheckBox Content="Веха Императора" IsChecked="{Binding Druid.Veha.Imperial, Mode=TwoWay}">
                             <ToolTipService.ToolTip>
                                 Сила атаки и сила заклинаний +4%. Очков характеристик + 48
                             </ToolTipService.ToolTip>
                         </CheckBox>
 
-                        <CheckBox Content="Веха Оро">
+                        <CheckBox Content="Веха Оро" IsChecked="{Binding Druid.Veha.Oro, Mode=TwoWay}">
                             <ToolTipService.ToolTip>
                                 Защита и сопротивление +4%. Очки характеристик +64
                             </ToolTipService.ToolTip>
                         </CheckBox>
 
-                        <CheckBox Content="Веха Акари">
+                        <CheckBox Content="Веха Акари" IsChecked="{Binding Druid.Veha.Akari, Mode=TwoWay}">
                             <ToolTipService.ToolTip>
                                 Максимальный запас здоровья +4%. Очки характеристик +80
                             </ToolTipService.ToolTip>
                         </CheckBox>
 
-                        <CheckBox Content="Веха Куроми">
+                        <CheckBox Content="Веха Куроми" IsChecked="{Binding Druid.Veha.Kuromi, Mode=TwoWay}">
                             <ToolTipService.ToolTip>
                                 Максимальный запас здоровья +7%. Очки характеристик +128
                             </ToolTipService.ToolTip>
                         </CheckBox>
 
-                        <CheckBox Content="Веха Рена">
+                        <CheckBox Content="Веха Рена" IsChecked="{Binding Druid.Veha.Ren, Mode=TwoWay}">
                             <ToolTipService.ToolTip>
                                 Максимальный запас здоровья +10%. Очки характеристик +192
                             </ToolTipService.ToolTip>
                         </CheckBox>
 
-                        <CheckBox Content="Веха Атума">
+                        <CheckBox Content="Веха Атума" IsChecked="{Binding Druid.Veha.Atum, Mode=TwoWay}">
                             <ToolTipService.ToolTip>
                                 Максимальный запас здоровья +7%. Максимальная сила атаки и сила заклинаний +7%. Очки характеристик + 256
                             </ToolTipService.ToolTip>
