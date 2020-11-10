@@ -121,5 +121,59 @@ namespace RevelationStand
             
         }
 
+        private void Selected(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (navButtons != null)
+                {
+                    switch (navButtons.SelectedIndex)
+                    {
+                        case 0:
+                            characteristicGrid.Visibility = Visibility.Visible;
+                            armorGrid.Visibility = Visibility.Collapsed;
+                            vehaGrid.Visibility = Visibility.Collapsed;
+                            stoneGrid.Visibility = Visibility.Collapsed;
+                            skillGrid.Visibility = Visibility.Collapsed;
+                            break;
+                        case 1:
+                            characteristicGrid.Visibility = Visibility.Collapsed;
+                            armorGrid.Visibility = Visibility.Visible;
+                            vehaGrid.Visibility = Visibility.Collapsed;
+                            stoneGrid.Visibility = Visibility.Collapsed;
+                            skillGrid.Visibility = Visibility.Collapsed;
+                            break;
+                        case 2:
+                            characteristicGrid.Visibility = Visibility.Collapsed;
+                            armorGrid.Visibility = Visibility.Collapsed;
+                            vehaGrid.Visibility = Visibility.Visible;
+                            stoneGrid.Visibility = Visibility.Collapsed;
+                            skillGrid.Visibility = Visibility.Collapsed;
+                            break;
+                        case 3:
+                            characteristicGrid.Visibility = Visibility.Collapsed;
+                            armorGrid.Visibility = Visibility.Collapsed;
+                            vehaGrid.Visibility = Visibility.Collapsed;
+                            stoneGrid.Visibility = Visibility.Visible;
+                            skillGrid.Visibility = Visibility.Collapsed;
+                            break;
+                        case 4:
+                            characteristicGrid.Visibility = Visibility.Collapsed;
+                            armorGrid.Visibility = Visibility.Collapsed;
+                            vehaGrid.Visibility = Visibility.Collapsed;
+                            stoneGrid.Visibility = Visibility.Collapsed;
+                            skillGrid.Visibility = Visibility.Visible;
+                            break;
+                        default: throw new InvalidOperationException("Not selected : Method Selected : ListView ");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageDialog message = new MessageDialog(ex.Message + " :Method Selected()");
+                message.ShowAsync();
+            }
+
+        }
     }
 }

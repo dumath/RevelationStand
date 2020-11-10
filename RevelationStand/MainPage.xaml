@@ -6,10 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    
     >
 
-    <Grid >
+    <Grid>
         <!--Разметка левой панели сплит контейнера(Меню) -->
         <SplitView x:Name="MainView" PaneBackground="Gray" OpenPaneLength="200" DisplayMode="Inline" IsPaneOpen="True">
             <SplitView.Pane>
@@ -26,12 +25,12 @@
                         <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="charactetistic" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Menu" FontSize="14" TextAlignment="Center"/>
-                    <ListView  x:Name="navButtons"     Grid.Row="2" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,20,0,0">
-                        <ListViewItem x:Name="goToCharacteristicGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Харакетристика" IsSelected="True"/>
-                        <ListViewItem x:Name="goToArmorGrid"          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Броня"    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                        <ListViewItem x:Name="goToVehaGrid"           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Вехи"     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                        <ListViewItem x:Name="goToStoneGrid"          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Брактеат" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                        <ListViewItem x:Name="goToSkillGrid"          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Умения"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <ListView  x:Name="navButtons"     Grid.Row="2" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,20,0,0" SelectionChanged="Selected">
+                        <ListViewItem x:Name="goToCharacteristicGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Харакетристика" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                        <ListViewItem x:Name="goToArmorGrid"          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Броня"          HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                        <ListViewItem x:Name="goToVehaGrid"           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Вехи"           HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                        <ListViewItem x:Name="goToStoneGrid"          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Брактеат"       HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                        <ListViewItem x:Name="goToSkillGrid"          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Умения"         HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                     </ListView>
                     <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <SymbolIcon Symbol="Setting"/>
@@ -42,7 +41,7 @@
 
             <Grid Background="{StaticResource AppBarBackgroundThemeBrush}">
                 <!--Разметка окна характеристик-->
-                <Grid x:Name="characteristicGrid" Visibility="Visible"  >
+                <Grid x:Name="characteristicGrid" Visibility="Visible" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="7*"/>
@@ -302,47 +301,116 @@
                 
                 <!--Окно Вех(доп бонусы)-->
                 <Grid x:Name="vehaGrid" Visibility="Collapsed">
-                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="20,20,0,0" Orientation="Vertical" Spacing="5">
+                        <CheckBox Content="Веха Императора">
+                            <ToolTipService.ToolTip>
+                                Сила атаки и сила заклинаний +4%. Очков характеристик + 48
+                            </ToolTipService.ToolTip>
+                        </CheckBox>
+
+                        <CheckBox Content="Веха Оро">
+                            <ToolTipService.ToolTip>
+                                Защита и сопротивление +4%. Очки характеристик +64
+                            </ToolTipService.ToolTip>
+                        </CheckBox>
+
+                        <CheckBox Content="Веха Акари">
+                            <ToolTipService.ToolTip>
+                                Максимальный запас здоровья +4%. Очки характеристик +80
+                            </ToolTipService.ToolTip>
+                        </CheckBox>
+
+                        <CheckBox Content="Веха Куроми">
+                            <ToolTipService.ToolTip>
+                                Максимальный запас здоровья +7%. Очки характеристик +128
+                            </ToolTipService.ToolTip>
+                        </CheckBox>
+
+                        <CheckBox Content="Веха Рена">
+                            <ToolTipService.ToolTip>
+                                Максимальный запас здоровья +10%. Очки характеристик +192
+                            </ToolTipService.ToolTip>
+                        </CheckBox>
+
+                        <CheckBox Content="Веха Атума">
+                            <ToolTipService.ToolTip>
+                                Максимальный запас здоровья +7%. Максимальная сила атаки и сила заклинаний +7%. Очки характеристик + 256
+                            </ToolTipService.ToolTip>
+                        </CheckBox>
+                    </StackPanel>
                 </Grid>
                 
                 <!--Окно Брактеата. Взаимодействие будет выполнено рисунками. (Доп бонусы от камней-->
-                <GridView x:Name="stoneGrid">
+                <GridView x:Name="stoneGrid" Visibility="Collapsed">
                     
                 </GridView>
                  
                 <!-- Окно умении (Скиллы)-->
-                <Grid x:Name="skillsGrid" Visibility="Collapsed">
+                <Grid x:Name="skillGrid" Visibility="Collapsed">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="5*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="10*"/>
-                        <ColumnDefinition Width="10*"/>
-                        <ColumnDefinition Width="10*"/>
-                        <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <!-- Раздел иконок скилла-->
-                    <Image x:Name="sproutsOfLife" Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="3" VerticalAlignment="Center" Width="30" Source="Images/SproutsOfLife.png"/>
-                    <Image x:Name="leafFall"      Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="4" VerticalAlignment="Center" Width="30" Source="Images/LeafFall.png"/>
-                    <Image x:Name="climbingVines" Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="5" VerticalAlignment="Center" Width="30" Source="Images/ClimbingVines.png"/>
-                    <Image x:Name="wildBloom"     Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="6" VerticalAlignment="Center" Width="30" Source="Images/WildBloom.png"/>
-                    <Image x:Name="springShower"  Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="7" VerticalAlignment="Center" Width="30" Source="Images/SpringShower.png"/>
-                    <Image x:Name="streamOfLife"  Grid.Column="1" HorizontalAlignment="Center" Height="30" Grid.Row="8" VerticalAlignment="Center" Width="30" Source="Images/StreamOfLife.png"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Spacing="5">
+                        <Image x:Name="sproutsOfLife" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="30" Source="Images/SproutsOfLife.png"/>
+                        <TextBlock/>
+                        <TextBlock/>
+                    </StackPanel>
 
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Spacing="5">
+                        <Image x:Name="leafFall"      HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="30" Source="Images/LeafFall.png"/>
+                        <TextBlock/>
+                        <TextBlock/>
+                    </StackPanel>
 
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Spacing="5">
+                        <Image x:Name="climbingVines" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="30" Source="Images/ClimbingVines.png"/>
+                        <TextBlock/>
+                        <TextBlock/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Spacing="5">
+                        <Image x:Name="wildBloom"     HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="30" Source="Images/WildBloom.png"/>
+                        <TextBlock/>
+                        <TextBlock/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Spacing="5">
+                        <Image x:Name="springShower"  HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="30" Source="Images/SpringShower.png"/>
+                        <TextBlock/>
+                        <TextBlock/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Spacing="5">
+                        <Image x:Name="streamOfLife"  HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="30" Source="Images/StreamOfLife.png"/>
+                        <TextBlock/>
+                        <TextBlock/>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </SplitView>
