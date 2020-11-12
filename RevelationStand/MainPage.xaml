@@ -7,6 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     >
+    <Page.Resources>
+        <CollectionViewSource x:Name="stones"/>
+    </Page.Resources>
 
     <Grid>
         <!--Разметка левой панели сплит контейнера(Меню) -->
@@ -41,7 +44,7 @@
 
             <Grid Background="{StaticResource AppBarBackgroundThemeBrush}">
                 <!--Разметка окна характеристик-->
-                <Grid x:Name="characteristicGrid" Visibility="Visible" >
+                <Grid x:Name="characteristicGrid" Visibility="Collapsed" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="7*"/>
@@ -352,7 +355,7 @@
                 </Grid>
                 
                 <!--Окно Брактеата. Взаимодействие будет выполнено рисунками. (Доп бонусы от камней-->
-                <GridView x:Name="stoneGrid" Visibility="Collapsed">
+                <GridView x:Name="stoneGrid" Visibility="Visible" >
                     
                 </GridView>
                  

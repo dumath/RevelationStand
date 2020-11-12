@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevelationStand", "Revelati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Characteristic", "Characteristic\Characteristic.csproj", "{ECE3CB1A-92A7-44F4-B7BB-7989DF61AF5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stones", "Stones\Stones.csproj", "{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,26 @@ Global
 		{ECE3CB1A-92A7-44F4-B7BB-7989DF61AF5F}.Release|x64.Build.0 = Release|x64
 		{ECE3CB1A-92A7-44F4-B7BB-7989DF61AF5F}.Release|x86.ActiveCfg = Release|x86
 		{ECE3CB1A-92A7-44F4-B7BB-7989DF61AF5F}.Release|x86.Build.0 = Release|x86
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Debug|ARM.ActiveCfg = Debug|ARM
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Debug|ARM.Build.0 = Debug|ARM
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Debug|ARM64.Build.0 = Debug|ARM64
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Debug|x64.ActiveCfg = Debug|x64
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Debug|x64.Build.0 = Debug|x64
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Debug|x86.ActiveCfg = Debug|x86
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Debug|x86.Build.0 = Debug|x86
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Release|ARM.ActiveCfg = Release|ARM
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Release|ARM.Build.0 = Release|ARM
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Release|ARM64.ActiveCfg = Release|ARM64
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Release|ARM64.Build.0 = Release|ARM64
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Release|x64.ActiveCfg = Release|x64
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Release|x64.Build.0 = Release|x64
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Release|x86.ActiveCfg = Release|x86
+		{5D3182CA-E1DB-46B2-ABE5-7FA12C335756}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

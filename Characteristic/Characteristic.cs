@@ -885,6 +885,8 @@ namespace Characteristic
         private bool _atum;
         public event PropertyChangedEventHandler PropertyChanged;
 
+
+        #region Propertyes
         public bool Imperial
         {
             get => _imperial;
@@ -944,6 +946,7 @@ namespace Characteristic
                 this.OnPropertyChanged(nameof(Atum));
             }
         }
+        #endregion
 
         #region Methods
         private void OnPropertyChanged(string propertyName)

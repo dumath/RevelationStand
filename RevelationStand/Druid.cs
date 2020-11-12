@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Characteristic;
 
+
 namespace RevelationStand
 {
     //TODO: Нужно реализовать для каждой характеристика один тип. !Возможно
