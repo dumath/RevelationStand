@@ -877,6 +877,7 @@ namespace Characteristic
 
     public class Veha : INotifyPropertyChanged
     {
+        //Данная ветвь реализуется последней(нет инфы по механике: модификатор/базовая/общая)
         private bool _imperial;
         private bool _oro;
         private bool _akari;

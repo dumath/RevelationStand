@@ -7,9 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     >
-    <Page.Resources>
-        <CollectionViewSource x:Name="stones"/>
-    </Page.Resources>
+    
 
     <Grid>
         <!--Разметка левой панели сплит контейнера(Меню) -->
