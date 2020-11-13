@@ -1015,7 +1015,7 @@ namespace Characteristic
 
 
     public delegate void Set(float endurancy, float spellPower, BonusBase bonusBase);
-    public delegate void ValueChanging(float agility);
+    public delegate void ValueChanging(float value);
 
     //Класc-контейнер методов расчета/расширений
     public static class Calculate
