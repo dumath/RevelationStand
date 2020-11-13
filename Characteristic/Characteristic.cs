@@ -388,6 +388,7 @@ namespace Characteristic
         private float _value;
         private Bonus _bonus;
         public event PropertyChangedEventHandler PropertyChanged;
+        public event ValueChanging ValueChanged;
 
         public Agility(float value)
         {
@@ -414,12 +415,20 @@ namespace Characteristic
         {
             this._value++;
             OnPropertyChanged(nameof(Value));
+            if (ValueChanged != null)
+                ValueChanged(1.0f);
         }
 
         public void Sub()
         {
-            this._value--;
-            OnPropertyChanged(nameof(Value));
+            if(this._value != 1.0f)
+            {
+                this._value--;
+                OnPropertyChanged(nameof(Value));
+                if (ValueChanged != null)
+                    ValueChanged(-1.0f);
+            }
+            
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -875,6 +884,52 @@ namespace Characteristic
         #endregion
     }
 
+    public class CriticalChance : INotifyPropertyChanged
+    {
+        //Класс - Вероятность нанесения критического удара
+        #region Fields
+        private float _value;
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Constructors
+        public CriticalChance(Agility value)
+        {
+            this._value = value.Value * 2.0f;
+        }
+        #endregion
+
+        #region Propertyes
+        public float Value
+        {
+            get => _value;
+            set
+            {
+                this._value = value;
+                this.OnPropertyChanged(nameof(Value));
+            }
+        }
+        #endregion
+
+        #region Methods
+        public void Change(float value)
+        {
+            this._value += value*2.0f;
+            OnPropertyChanged(nameof(Value));
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if(PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
+
+    }
+
+
     public class Veha : INotifyPropertyChanged
     {
         //Данная ветвь реализуется последней(нет инфы по механике: модификатор/базовая/общая)
@@ -959,7 +1014,8 @@ namespace Characteristic
     }
 
 
-    public delegate void Set(float endurancy, float spellPower, BonusBase bonusBase); 
+    public delegate void Set(float endurancy, float spellPower, BonusBase bonusBase);
+    public delegate void ValueChanging(float agility);
 
     //Класc-контейнер методов расчета/расширений
     public static class Calculate

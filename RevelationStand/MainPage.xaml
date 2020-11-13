@@ -42,7 +42,7 @@
 
             <Grid Background="{StaticResource AppBarBackgroundThemeBrush}">
                 <!--Разметка окна характеристик-->
-                <Grid x:Name="characteristicGrid" Visibility="Collapsed" >
+                <Grid x:Name="characteristicGrid" Visibility="Visible" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="7*"/>
@@ -152,7 +152,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Spacing="30">
                             <TextBlock Text="Критический удар"/>
-                            <TextBlock Text="0"/>
+                            <TextBlock Text="{Binding Druid.CriticalChance.Value}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Spacing="30">
                             <TextBlock Text="Критический урон"/>
@@ -353,7 +353,7 @@
                 </Grid>
 
                 <!--Окно Брактеата. Взаимодействие будет выполнено рисунками. (Доп бонусы от камней)-->
-                <Canvas x:Name="stoneGrid" Visibility="Visible" Background="#FF24211B">
+                <Canvas x:Name="stoneGrid" Visibility="Collapsed" Background="#FF24211B">
                     <Rectangle Canvas.Top="10" Canvas.Left="10" Canvas.ZIndex="1" Height="480" Width=" 530">
                         <Rectangle.Fill>
                             <ImageBrush ImageSource="Images/StonePanel.png"/>

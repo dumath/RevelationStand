@@ -37,6 +37,7 @@ namespace RevelationStand
         private MP _mp;
         private Defence _defence;
         private Resist _resist;
+        private CriticalChance _criticalChance;
         private Veha _veha;
         #endregion
 
@@ -59,8 +60,11 @@ namespace RevelationStand
             this._resist = new Resist(100.0f, this._spellPower); //TODO: Тестовая загулшка (100.0f)
             this._endurancy.Set += _defence.Set;
             this._spellPower.Set += _resist.Set;
+            this._criticalChance = new CriticalChance(this._agility);
+            this._agility.ValueChanged += new ValueChanging(_criticalChance.Change);
             this._veha = new Veha();
         }
+
         #endregion
 
         #region Propertyes of characteristics
@@ -117,6 +121,11 @@ namespace RevelationStand
         public Veha Veha
         {
             get => this._veha;
+        }
+
+        public CriticalChance CriticalChance
+        {
+            get => this._criticalChance;
         }
         #endregion
     }
