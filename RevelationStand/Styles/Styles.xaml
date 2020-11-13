@@ -4,12 +4,10 @@
     xmlns:local="using:RevelationStand">
 
 
-    <ImageBrush x:Key="MinBackGround" ImageSource = "Images/Druid.jpg"/>
+    <ImageBrush x:Key="BackGround" ImageSource = "Images/Druid.jpg"/>
     <ImageBrush x:Key="StoneWindow" ImageSource="Images/StonePanel.png"/>
 
-    <Style x:Key="MinGrid" TargetType="Grid">
-        <Setter Property="Background" Value="{StaticResource MinBackGround}"/>
-    </Style>
+    
 
 
    

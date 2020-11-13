@@ -287,7 +287,7 @@
                         </StackPanel>
                     </ListView>
                 </Grid>
-                
+
                 <!--Окно Брони(гринда)-->
                 <Grid x:Name="armorGrid" Visibility="Collapsed">
                     <Grid.RowDefinitions>
@@ -301,7 +301,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                 </Grid>
-                
+
                 <!--Окно Вех(доп бонусы)-->
                 <Grid x:Name="vehaGrid" Visibility="Collapsed">
                     <Grid.RowDefinitions>
@@ -353,12 +353,27 @@
                         </CheckBox>
                     </StackPanel>
                 </Grid>
-                
-                <!--Окно Брактеата. Взаимодействие будет выполнено рисунками. (Доп бонусы от камней-->
-                <GridView x:Name="stoneGrid" Visibility="Visible" >
-                    
-                </GridView>
-                 
+
+                <!--Окно Брактеата. Взаимодействие будет выполнено рисунками. (Доп бонусы от камней)-->
+                <Canvas x:Name="stoneGrid" Visibility="Visible" Background="#FF24211B">
+                    <Rectangle Canvas.Top="10" Canvas.Left="10" Canvas.ZIndex="1" Height="480" Width=" 530">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/StonePanel.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <ListBox Canvas.Left="32" Canvas.Top="40" Width="50" Height="50"  ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <ListBoxItem>
+                            <Image />
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <Image/>
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <Image/>
+                        </ListBoxItem>
+                    </ListBox>
+                </Canvas>
+
                 <!-- Окно умении (Скиллы)-->
                 <Grid x:Name="skillGrid" Visibility="Collapsed">
                     <Grid.RowDefinitions>

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace Stones
 {
-    abstract class SkyStoneRing
+    abstract class SkyRing
     {
         #region Fields
 
         #endregion
     }
 
-    abstract class GroundStoneRing
+    abstract class GroundRing
     {
         #region Feilds
         #endregion
@@ -103,7 +103,7 @@ namespace Stones
     #endregion
 
     //TODO: Если будет переделываться в структуру, поставить флаги readonly.
-    class SeaStone : GroundStoneRing
+    class SeaStone : GroundRing
     {
         private const int MODIFIER = 2;
 
@@ -113,17 +113,17 @@ namespace Stones
         }
     }
 
-    class RainStone : GroundStoneRing
+    class RainStone : GroundRing
     {
         
     }
 
-    class GroundStone : GroundStoneRing
+    class GroundStone : GroundRing
     {
 
     }
 
-    class SkyStone : GroundStoneRing
+    class SkyStone : GroundRing
     {
         private const int MODIFIER = 2;
 
