@@ -7,11 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     >
-    
+
 
     <Grid>
         <!--Разметка левой панели сплит контейнера(Меню) -->
-        <SplitView x:Name="MainView" PaneBackground="Gray" OpenPaneLength="200" DisplayMode="Inline" IsPaneOpen="True">
+        <SplitView x:Name="MainView" PaneBackground="White" OpenPaneLength="200" DisplayMode="Inline" IsPaneOpen="True">
             <SplitView.Pane>
                 <Grid Visibility="Visible">
                     <Grid.RowDefinitions>
@@ -42,11 +42,14 @@
 
             <Grid Background="{StaticResource AppBarBackgroundThemeBrush}">
                 <!--Разметка окна характеристик-->
-                <Grid x:Name="characteristicGrid" Visibility="Visible" >
+                <Grid x:Name="characteristicGrid" Visibility="Visible">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Images/Char.jpg" Stretch="UniformToFill" Opacity="0.5" />
+                    </Grid.Background>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="7*"/>
-                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="6*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -74,35 +77,35 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                            <TextBlock Text="Сила" ToolTipService.ToolTip="Каждая единица силы увеличивает на 1 ед. модификатор силы атаки. Каждые 10 единиц силы увеличивают бонус к базовой силе атаки на 4%"/>
+                            <TextBlock Text="Сила" FontSize="15"  FontFamily="Franklin Gothic Medium"  ToolTipService.ToolTip="Каждая единица силы увеличивает на 1 ед. модификатор силы атаки. Каждые 10 единиц силы увеличивают бонус к базовой силе атаки на 4%"/>
                             <Button x:Name="subStrange" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="60,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click" />
                             <TextBlock Text="{Binding Druid.Strange.Value}" />
                             <Button x:Name="addStrange" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
                             <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Strange.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                            <TextBlock Text="Интеллект" ToolTipService.ToolTip="Каждая единица интеллекта, увеличивает модификатор силы заклинаний на 1 ед., модификатор лечения на 0,6 ед. Каждые 10 единиц, увеличивают бонус к базовой силе заклинаний на 4%"/>
+                            <TextBlock Text="Интеллект" FontSize="15"  FontFamily="Franklin Gothic Medium" ToolTipService.ToolTip="Каждая единица интеллекта, увеличивает модификатор силы заклинаний на 1 ед., модификатор лечения на 0,6 ед. Каждые 10 единиц, увеличивают бонус к базовой силе заклинаний на 4%"/>
                             <Button x:Name="subIntellegency" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="25,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
                             <TextBlock Text="{Binding Druid.Intellegency.Value}"/>
                             <Button x:Name="addIntellegency" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
                             <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Intellegency.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
                         </StackPanel>
                         <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                            <TextBlock Text="Выносливость" ToolTipService.ToolTip="Каждая единица выносливости, увеличивает запас здоровья на 29 ед., модификатор(!) защиты на 8ед. Каждые 10 единиц выносливости увеличивают бонус к базовой защите на 4%"/>
+                            <TextBlock Text="Выносливость" FontSize="15"  FontFamily="Franklin Gothic Medium" ToolTipService.ToolTip="Каждая единица выносливости, увеличивает запас здоровья на 29 ед., модификатор(!) защиты на 8ед. Каждые 10 единиц выносливости увеличивают бонус к базовой защите на 4%"/>
                             <Button x:Name="subEndurancy" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
                             <TextBlock Text="{Binding Druid.Endurancy.Value}"/>
                             <Button x:Name="addEndurancy" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
                             <TextBlock Margin="10,0,0,0" Text="{Binding Druid.Endurancy.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                            <TextBlock Text="Сила духа" ToolTipService.ToolTip="Каждая единица силы духа, увеличивает запас здоровья на 25 ед., запас маны на 10 ед., модификатор лечения на 1,6 ед., модификатор сопротивления на 8 ед. Каждые 10 единиц силы духа, увеличивают бонус к базовому сопротивлению на 4%"/>
+                            <TextBlock Text="Сила духа" FontSize="15"  FontFamily="Franklin Gothic Medium" ToolTipService.ToolTip="Каждая единица силы духа, увеличивает запас здоровья на 25 ед., запас маны на 10 ед., модификатор лечения на 1,6 ед., модификатор сопротивления на 8 ед. Каждые 10 единиц силы духа, увеличивают бонус к базовому сопротивлению на 4%"/>
                             <Button x:Name="subSpellPower" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
                             <TextBlock Text="{Binding Druid.SpellPower.Value}"/>
                             <Button x:Name="addSpellPower" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
                             <TextBlock Margin="10,0,0,0" Text="{Binding Druid.SpellPower.Bonus.Value}" ToolTipService.ToolTip="Бонус к характеристике"/>
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20" Margin="10,10,0,0">
-                            <TextBlock Text="Ловкость" ToolTipService.ToolTip="Каждая единица ловкости, увеличивает критический удар на 2 ед."/>
+                            <TextBlock Text="Ловкость" FontSize="15"  FontFamily="Franklin Gothic Medium" ToolTipService.ToolTip="Каждая единица ловкости, увеличивает критический удар на 2 ед."/>
                             <Button x:Name="subAgility" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Content="-" Tapped="sub_click"/>
                             <TextBlock Text="{Binding Druid.Agility.Value}"/>
                             <Button x:Name="addAgility" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0,0,0,0" Content="+" Tapped="add_click"/>
@@ -119,7 +122,7 @@
                         </StackPanel>
                     </Grid>
                     <!--Все характеристики. 2 Часть SplitView. Блок характеристик -->
-                    <ListView Grid.Row="2" Grid.Column="1" Margin="20,20,0,0" Visibility="Visible">
+                    <ListView Grid.Row="2" Grid.Column="1" Margin="20,20,0,0" Visibility="Visible" Background="#FFECE9E3">
                         <!--Окно характеристик-->
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <!--Базовая сила атаки + модификатор-->
@@ -168,8 +171,6 @@
                         </StackPanel>
                         <!--ЗАЩИТА (class Defence)-->
                         <StackPanel Orientation="Horizontal" Spacing="30">
-                            <TextBlock Text="Защита"/>
-                            <TextBlock Text="{Binding Druid.Defence.Value}">
                             <ToolTipService.ToolTip>
                                 <StackPanel Orientation="Horizontal" Spacing="5">
                                     <TextBlock Text="Базовая защита :"/>
@@ -178,7 +179,8 @@
                                     <TextBlock x:Name="modifierDefence" Text="{Binding Druid.Defence.Modifier.Value}"/>
                                 </StackPanel>
                             </ToolTipService.ToolTip>
-                        </TextBlock>
+                            <TextBlock Text="Защита"/>
+                            <TextBlock Text="{Binding Druid.Defence.Value}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Spacing="30">
                             <TextBlock Text="Бонус к защите"/>
@@ -186,8 +188,6 @@
                         </StackPanel>
                         <!--СОПРОТИВЛЕНИЕ (class Resist)-->
                         <StackPanel Orientation="Horizontal" Spacing="30">
-                            <TextBlock Text="Сопротивление"/>
-                            <TextBlock Text="{Binding Druid.Resist.Value}">
                             <ToolTipService.ToolTip>
                                 <StackPanel Orientation="Horizontal" Spacing="5">
                                     <TextBlock Text="Базовое сопротивление:"/>
@@ -196,7 +196,8 @@
                                     <TextBlock x:Name="modifierResist" Text="{Binding Druid.Resist.Modifier.Value}"/>
                                 </StackPanel>
                             </ToolTipService.ToolTip>
-                        </TextBlock>
+                            <TextBlock Text="Сопротивление"/>
+                            <TextBlock Text="{Binding Druid.Resist.Value}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Spacing="30">
                             <TextBlock Text="Бонус к сопротивлению"/>
@@ -288,6 +289,9 @@
 
                 <!--Окно Брони(гринда)-->
                 <Grid x:Name="armorGrid" Visibility="Collapsed">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Images/Armor.jpg" Stretch="UniformToFill" Opacity="0.5"/>
+                    </Grid.Background>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -302,6 +306,9 @@
 
                 <!--Окно Вех(доп бонусы)-->
                 <Grid x:Name="vehaGrid" Visibility="Collapsed">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Images/Veha.jpg" Stretch="UniformToFill" Opacity="0.5"/>
+                    </Grid.Background>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="10*"/>
@@ -374,6 +381,9 @@
 
                 <!-- Окно умении (Скиллы)-->
                 <Grid x:Name="skillGrid" Visibility="Collapsed">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Images/Skill.jpg" Stretch="UniformToFill" Opacity="0.5" />
+                    </Grid.Background>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="5*"/>

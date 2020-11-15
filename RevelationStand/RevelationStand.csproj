@@ -140,7 +140,11 @@
     <None Include="RevelationStand_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Armor.jpg" />
+    <Content Include="Images\Skill.jpg" />
+    <Content Include="Images\Veha.jpg" />
     <Content Include="Images\BackGrounded.jpg" />
+    <Content Include="Images\Char.jpg" />
     <Content Include="Images\ClimbingVines.png" />
     <Content Include="Images\Druid.jpg" />
     <Content Include="Images\LeafFall.png" />
