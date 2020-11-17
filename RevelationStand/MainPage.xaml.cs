@@ -24,9 +24,11 @@ namespace RevelationStand
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        ViewModel view;
-        
+        #region XAML ADDITIONAL FIELDS
+        private ViewModel view;
+        #endregion
 
+        #region Constructor of Main Page
         public MainPage()
         {
             try
@@ -35,7 +37,6 @@ namespace RevelationStand
                 view = new ViewModel();
                 DataContext = view;
                 lvl.Text =$"Уровень: {view.Druid.Lvl.ToString()}";
-                
 
             }
             catch(Exception ex)
@@ -45,7 +46,9 @@ namespace RevelationStand
             }
              
         }
+        #endregion
 
+        #region EventHandler
         private void add_click(object sender, TappedRoutedEventArgs e)
         {
             try
@@ -175,5 +178,6 @@ namespace RevelationStand
             }
 
         }
+        #endregion
     }
 }

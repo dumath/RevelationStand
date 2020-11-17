@@ -141,7 +141,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Armor.jpg" />
+    <Content Include="Images\Creating.png" />
+    <Content Include="Images\Fire.png" />
+    <Content Include="Images\Ground.png" />
+    <Content Include="Images\Ligth.png" />
+    <Content Include="Images\Metal.png" />
+    <Content Include="Images\Rain.png" />
+    <Content Include="Images\Sea.png" />
     <Content Include="Images\Skill.jpg" />
+    <Content Include="Images\Storm.png" />
     <Content Include="Images\Veha.jpg" />
     <Content Include="Images\BackGrounded.jpg" />
     <Content Include="Images\Char.jpg" />
@@ -187,6 +195,10 @@
     <ProjectReference Include="..\Characteristic\Characteristic.csproj">
       <Project>{ece3cb1a-92a7-44f4-b7bb-7989df61af5f}</Project>
       <Name>Characteristic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stones\Stones.csproj">
+      <Project>{5d3182ca-e1db-46b2-abe5-7fa12c335756}</Project>
+      <Name>Stones</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
