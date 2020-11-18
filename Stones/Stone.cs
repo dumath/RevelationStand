@@ -145,7 +145,7 @@ namespace Stones
         /// <param name="level"> Уровень камня. По умолчанию 1 лвл</param>
         public SeaStone(int level = LVL.ONE)
         {
-            this._value = 2 * level;
+            this._value = MODIFIER * level;
         }
 
         //Невозможность вызова пассивного конструктора.?
