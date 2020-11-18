@@ -25,18 +25,27 @@ namespace RevelationStand
         private const float HP_PER_LVL = 72.0f;
         private const float MP_PER_LVL = 50.0f;
         #region Fields
+        
         private Strange _strange;
         private Intellegency _intellegency;
         private Endurancy _endurancy;
         private SpellPower _spellPower;
         private Agility _agility;
+
+
+
         private Speed _speed; //TODO: Забиндить, при описании баф/дебаф. Биндится только на инициализации.
         private HP _hp;
         private MP _mp;
         private Defence _defence;
         private Resist _resist;
         private CriticalChance _criticalChance;
+
+
+
+
         private Veha _veha;
+        private PanelStones _panelStones; //TODO: Разобраться со статой тарелки, куда ставятся камни. У каждого класса они - РАЗНЫЕ.
         #endregion
 
         #region Constructors

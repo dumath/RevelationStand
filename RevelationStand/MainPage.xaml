@@ -367,6 +367,7 @@
                             <ImageBrush ImageSource="Images/StonePanel.png"/>
                         </Rectangle.Fill>
                     </Rectangle>
+                    
                     <!--НЕБЕСНЫЙ КРУГ-->
                     <!--11 часов-->
                     <ComboBox Canvas.Left="189" Canvas.Top="42" Height="52" Width="52" MaxDropDownHeight="156" Padding="0">
@@ -2728,6 +2729,7 @@
                             </Grid>
                         </ComboBoxItem>
                     </ComboBox>
+                    
                     <!--Земной круг-->
                     <!--11 часов-->
                     <ComboBox Canvas.Left="193" Canvas.Top="146" Width="52" Height="52" MaxDropDownHeight="156" Padding="0"  >
