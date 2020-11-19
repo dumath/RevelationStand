@@ -25,7 +25,7 @@ namespace Characteristic
         /// <summary>
         /// Инициализация объекта. Значение приходит из класса Друид
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">Показатель силы</param>
         public Strange(float value)
         {
             this._value = value;
@@ -70,7 +70,7 @@ namespace Characteristic
 
         #region Methods
         /// <summary>
-        /// Добавляем 1 единицу к основновному значению силы
+        /// Добавляем 1 единицу к основновному значению силы и проверяем выражением изменения в проценте к базовой.
         /// </summary>
         public void Add()
         {
@@ -81,7 +81,7 @@ namespace Characteristic
         }
 
         /// <summary>
-        /// Убираем 1 очко от основного значения силы. Не может быть 0 или -1
+        /// Убираем 1 очко от основного значения силы и проверяем выражением изменения в проценте к базовой. Не может быть 0 или -1
         /// </summary>
         public void Sub()
         {
@@ -95,6 +95,9 @@ namespace Characteristic
 
         }
 
+        ///<summary>
+        ///Вносим изменения в интерфейсе
+        ///</summary>
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)

@@ -8,11 +8,26 @@ namespace RevelationStand
 {
     class ViewModel
     {
-        private Druid _druid;
+        public enum CharacterClass { Druid, Warrior, Defender, Reaper, Wizard, Assasin, Gunner }
 
-        public ViewModel()
+        private Druid _druid;
+        /*private Warrior warrior;
+        private Defender defender;
+        private Reaper reaper;
+        private Wizard wizard;
+        private Assasin assasin;
+        private Gunner gunner;*/
+
+        public ViewModel( CharacterClass characterClass)
         {
-            _druid = new Druid();
+            switch(characterClass)
+            {
+                case CharacterClass.Druid:
+                    _druid = new Druid();
+                    break;
+                default: break;
+            }
+            
         }
 
         //TODO: ADD class character / Command

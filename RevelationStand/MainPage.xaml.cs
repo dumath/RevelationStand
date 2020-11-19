@@ -34,7 +34,7 @@ namespace RevelationStand
             try
             {
                 this.InitializeComponent();
-                view = new ViewModel();
+                view = new ViewModel(ViewModel.CharacterClass.Druid);
                 DataContext = view;
                 lvl.Text =$"Уровень: {view.Druid.Lvl.ToString()}";
 
